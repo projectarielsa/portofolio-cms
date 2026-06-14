@@ -14,6 +14,7 @@ class Project extends Model
         'title',
         'slug',
         'cover_image',
+        'gallery',
         'category',
         'description',
         'content',
@@ -28,6 +29,7 @@ class Project extends Model
     protected $casts = [
         'is_featured' => 'boolean',
         'published_at' => 'datetime',
+        'gallery' => 'array',
     ];
 
     protected static function booted(): void
@@ -46,5 +48,10 @@ class Project extends Model
         }
 
         return array_map('trim', explode(',', $this->tech_stack));
+    }
+
+    public function getGalleryListAttribute(): array
+    {
+        return $this->gallery ?? [];
     }
 }

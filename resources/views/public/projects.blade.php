@@ -2,111 +2,125 @@
 
 @php use Illuminate\Support\Str; @endphp
 
-@section('title', 'Projects — ' . ($about->name ?? 'Portfolio'))
+@section('seo_title', $about->name ?? 'Muhamad Ariel Saputra')
+@section('seo_subtitle', 'Projects — Portfolio')
+@section('seo_description', 'Kumpulan project ' . ($about->name ?? 'Muhamad Ariel Saputra') . ' — aplikasi web Laravel, sistem informasi, dan project IT yang menunjukkan kemampuan teknis sebagai Web Developer.')
+@section('seo_keywords', ($about->name ?? 'Muhamad Ariel Saputra') . ', project Laravel, portfolio web developer, project IT support')
+@section('og_title', 'Projects Portfolio — ' . ($about->name ?? 'Muhamad Ariel Saputra'))
+@section('og_description', 'Lihat kumpulan project web development dan IT dari ' . ($about->name ?? 'Muhamad Ariel Saputra') . '.')
 
 @section('content')
 
-<section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-20 pb-8">
+<section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-20 pb-16">
 
     {{-- Breadcrumb --}}
-    <div class="flex items-center gap-2 text-xs text-slate-600 mb-12">
-        <a href="{{ route('home') }}" class="hover:text-slate-400 transition-colors">Home</a>
-        <span>/</span>
-        <span class="text-slate-400">Projects</span>
+    <div class="flex items-center gap-2 text-xs text-slate-400 mb-12">
+        <a href="{{ route('home') }}" class="hover:text-indigo-600 transition-colors">Home</a>
+        <span class="text-slate-300">/</span>
+        <span class="text-slate-500">Projects</span>
     </div>
 
     {{-- Header --}}
-    <div class="max-w-3xl mb-16">
-        <p class="text-xs font-semibold uppercase tracking-widest text-cyan-500 mb-4">Portfolio</p>
-        <h1 class="font-display text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
+    <div class="max-w-2xl mb-14">
+        <p class="text-xs font-bold uppercase tracking-widest text-indigo-500 mb-4">Portfolio</p>
+        <h1 class="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl" style="font-family:'Sora',sans-serif;">
             Projects saya
         </h1>
-        <p class="mt-5 text-lg leading-8 text-slate-400">
-            Setiap project di halaman ini menunjukkan cara saya menyusun fitur, memilih stack, dan membangun sistem yang terstruktur dan maintainable.
+        <p class="mt-5 text-lg leading-8 text-slate-500">
+            Setiap project menunjukkan cara saya menyusun fitur, memilih stack, dan membangun sistem yang terstruktur.
         </p>
     </div>
 
     {{-- Grid --}}
-    <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         @forelse ($projects as $project)
-            <a href="{{ route('projects.show', $project) }}"
-               class="group card-hover flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/3 backdrop-blur-sm">
 
-                {{-- Cover --}}
-                <div class="aspect-[16/10] overflow-hidden bg-slate-900/80 shrink-0">
+            <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg hover:border-indigo-200 hover:-translate-y-1 transition-all duration-200">
+
+                {{-- Cover Image --}}
+                <a href="{{ route('projects.show', $project) }}" class="block">
                     @if ($project->cover_image)
-                        <img src="{{ asset($project->cover_image) }}"
-                             alt="{{ $project->title }}"
-                             class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.04]">
+                        <div class="h-48 overflow-hidden bg-slate-100">
+                            <img src="{{ asset($project->cover_image) }}"
+                                 alt="{{ $project->title }}"
+                                 class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                        </div>
                     @else
-                        <div class="flex h-full w-full flex-col justify-end p-6 bg-gradient-to-br from-slate-900 via-slate-800/80 to-slate-950">
-                            <p class="text-[10px] uppercase tracking-widest text-slate-500 mb-2">{{ $project->category ?: 'Project' }}</p>
-                            <p class="font-display text-xl font-bold text-white">{{ $project->title }}</p>
+                        <div class="h-48 bg-gradient-to-br from-indigo-50 via-slate-50 to-violet-50 flex flex-col justify-end p-5">
+                            <p class="text-xs font-bold uppercase tracking-widest text-indigo-300 mb-1">{{ $project->category ?: 'Project' }}</p>
+                            <p class="text-lg font-bold text-slate-800 leading-tight line-clamp-2">{{ $project->title }}</p>
                         </div>
                     @endif
-                </div>
+                </a>
 
                 {{-- Body --}}
-                <div class="flex flex-col flex-1 p-6">
-                    <div class="flex items-center justify-between gap-3 mb-3">
-                        <span class="text-[10px] uppercase tracking-widest text-slate-500 font-medium">{{ $project->category ?: 'Project' }}</span>
+                <div class="p-5">
+
+                    {{-- Category + Badge --}}
+                    <div class="flex items-center justify-between gap-2 mb-2">
+                        <span class="text-xs font-bold uppercase tracking-wide text-slate-400">{{ $project->category ?: 'Project' }}</span>
                         @if ($project->is_featured)
-                            <span class="rounded-full bg-cyan-400/10 border border-cyan-400/20 px-2.5 py-1 text-[10px] font-semibold text-cyan-300 uppercase tracking-wide">Featured</span>
+                            <span class="text-xs font-bold uppercase tracking-wide text-indigo-600 bg-indigo-50 border border-indigo-200 px-2 py-0.5 rounded-full">Featured</span>
                         @endif
                     </div>
 
-                    <h2 class="font-display text-lg font-semibold text-white leading-snug group-hover:text-cyan-100 transition-colors">
-                        {{ $project->title }}
-                    </h2>
+                    {{-- Title --}}
+                    <a href="{{ route('projects.show', $project) }}" class="block">
+                        <h2 class="text-base font-bold text-slate-800 leading-snug line-clamp-2 hover:text-indigo-600 transition-colors" style="font-family:'Sora',sans-serif;">
+                            {{ $project->title }}
+                        </h2>
+                    </a>
 
-                    <p class="mt-3 text-sm leading-6 text-slate-400 flex-1">
-                        {{ Str::limit($project->description, 120) }}
+                    {{-- Description --}}
+                    <p class="mt-2 text-sm text-slate-500 leading-relaxed line-clamp-3">
+                        {{ $project->description }}
                     </p>
 
-                    {{-- Tech tags if available --}}
-                    @if ($project->tech_stack ?? null)
-                        <div class="mt-4 flex flex-wrap gap-1.5">
-                            @foreach (explode(',', $project->tech_stack) as $tech)
-                                <span class="rounded-md bg-white/5 px-2 py-1 text-[10px] font-medium text-slate-400 border border-white/8">{{ trim($tech) }}</span>
+                    {{-- Tech tags --}}
+                    @if ($project->tech_stack)
+                        <div class="mt-3 flex flex-wrap gap-1.5">
+                            @foreach (array_slice(explode(',', $project->tech_stack), 0, 4) as $tech)
+                                <span class="text-xs font-medium text-slate-500 bg-slate-50 border border-slate-200 px-2 py-0.5 rounded">{{ trim($tech) }}</span>
                             @endforeach
                         </div>
                     @endif
 
-                    <div class="mt-5 flex items-center justify-between">
-                        <span class="inline-flex items-center gap-1.5 text-sm font-medium text-cyan-400 group-hover:text-cyan-300 transition-colors">
+                    {{-- Footer: CTA + Demo/Repo INSIDE card --}}
+                    <div class="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between gap-2">
+                        <a href="{{ route('projects.show', $project) }}" class="text-sm font-bold text-indigo-600 hover:text-indigo-800 transition-colors inline-flex items-center gap-1">
                             Lihat Detail
-                            <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
                             </svg>
-                        </span>
+                        </a>
 
-                        {{-- External links --}}
-                        <div class="flex items-center gap-2" onclick="event.preventDefault()">
-                            @if ($project->demo_url ?? null)
+                        {{-- Demo & Repo buttons INSIDE card --}}
+                        <div class="flex items-center gap-1.5">
+                            @if ($project->demo_url)
                                 <a href="{{ $project->demo_url }}" target="_blank"
-                                   class="text-xs text-slate-500 hover:text-white transition-colors border border-white/10 rounded-lg px-2.5 py-1.5 hover:border-white/20 hover:bg-white/5">
+                                   class="text-xs font-semibold text-slate-400 hover:text-indigo-600 border border-slate-200 hover:border-indigo-200 hover:bg-indigo-50 rounded-lg px-2.5 py-1 transition-all">
                                     Demo
                                 </a>
                             @endif
-                            @if ($project->repo_url ?? null)
+                            @if ($project->repo_url)
                                 <a href="{{ $project->repo_url }}" target="_blank"
-                                   class="text-xs text-slate-500 hover:text-white transition-colors border border-white/10 rounded-lg px-2.5 py-1.5 hover:border-white/20 hover:bg-white/5">
+                                   class="text-xs font-semibold text-slate-400 hover:text-indigo-600 border border-slate-200 hover:border-indigo-200 hover:bg-indigo-50 rounded-lg px-2.5 py-1 transition-all">
                                     Repo
                                 </a>
                             @endif
                         </div>
                     </div>
+
                 </div>
-            </a>
+            </div>
+
         @empty
-            <div class="col-span-full rounded-2xl border border-dashed border-white/10 px-8 py-20 text-center">
-                <div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-white/5">
-                    <svg class="h-6 w-6 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9.776c.112-.017.227-.026.344-.026h15.812c.117 0 .232.009.344.026m-16.5 0a2.25 2.25 0 00-1.883 2.542l.857 6a2.25 2.25 0 002.227 1.932H19.05a2.25 2.25 0 002.227-1.932l.857-6a2.25 2.25 0 00-1.883-2.542m-16.5 0V6A2.25 2.25 0 016 3.75h3.879a1.5 1.5 0 011.06.44l2.122 2.12a1.5 1.5 0 001.06.44H18A2.25 2.25 0 0120.25 9v.776"/>
-                    </svg>
-                </div>
-                <p class="text-slate-400 font-medium">Belum ada project yang dipublikasikan</p>
-                <p class="mt-1 text-sm text-slate-600">Tambahkan dari admin panel.</p>
+            <div class="col-span-full bg-white border-2 border-dashed border-slate-200 rounded-2xl px-8 py-16 text-center">
+                <svg class="w-10 h-10 text-slate-300 mx-auto mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9.776c.112-.017.227-.026.344-.026h15.812c.117 0 .232.009.344.026m-16.5 0a2.25 2.25 0 00-1.883 2.542l.857 6a2.25 2.25 0 002.227 1.932H19.05a2.25 2.25 0 002.227-1.932l.857-6a2.25 2.25 0 00-1.883-2.542m-16.5 0V6A2.25 2.25 0 016 3.75h3.879a1.5 1.5 0 011.06.44l2.122 2.12a1.5 1.5 0 001.06.44H18A2.25 2.25 0 0120.25 9v.776"/>
+                </svg>
+                <p class="text-sm font-bold text-slate-500">Belum ada project yang dipublikasikan</p>
+                <p class="mt-1 text-xs text-slate-400">Tambahkan dari admin panel.</p>
             </div>
         @endforelse
     </div>
@@ -114,11 +128,10 @@
     {{-- Pagination --}}
     @if ($projects->hasPages())
         <div class="mt-12 flex justify-center">
-            <div class="text-slate-400 [&_.pagination]:flex [&_.pagination]:gap-2 [&_.page-link]:rounded-xl [&_.page-link]:border [&_.page-link]:border-white/10 [&_.page-link]:bg-white/5 [&_.page-link]:px-4 [&_.page-link]:py-2 [&_.page-link]:text-sm [&_.page-link:hover]:bg-white/10 [&_.page-link:hover]:text-white [&_.active_.page-link]:bg-white/15 [&_.active_.page-link]:text-white [&_.active_.page-link]:border-white/20">
-                {{ $projects->links() }}
-            </div>
+            {{ $projects->links() }}
         </div>
     @endif
+
 </section>
 
 @endsection

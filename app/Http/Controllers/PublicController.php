@@ -36,6 +36,7 @@ class PublicController extends Controller
     public function projects()
     {
         return view('public.projects', [
+            'about'    => About::query()->first(),
             'projects' => Project::query()->where('status', 'published')->latest('published_at')->paginate(9),
         ]);
     }
@@ -45,7 +46,8 @@ class PublicController extends Controller
         abort_unless($project->status === 'published', 404);
 
         return view('public.project-show', [
-            'project' => $project,
+            'about'           => About::query()->first(),
+            'project'         => $project,
             'relatedProjects' => Project::query()
                 ->where('id', '!=', $project->id)
                 ->where('status', 'published')
@@ -58,6 +60,7 @@ class PublicController extends Controller
     public function services()
     {
         return view('public.services', [
+            'about'    => About::query()->first(),
             'services' => Service::query()->orderBy('sort_order')->orderBy('title')->get(),
         ]);
     }
@@ -65,6 +68,7 @@ class PublicController extends Controller
     public function experiences()
     {
         return view('public.experiences', [
+            'about'       => About::query()->first(),
             'experiences' => Experience::query()->latest('start_date')->get(),
         ]);
     }
@@ -72,6 +76,7 @@ class PublicController extends Controller
     public function skills()
     {
         return view('public.skills', [
+            'about'  => About::query()->first(),
             'skills' => Skill::query()->orderBy('category')->orderBy('name')->get()->groupBy(fn ($skill) => $skill->category ?: 'General'),
         ]);
     }
@@ -79,6 +84,7 @@ class PublicController extends Controller
     public function testimonials()
     {
         return view('public.testimonials', [
+            'about'        => About::query()->first(),
             'testimonials' => Testimonial::query()->latest()->paginate(9),
         ]);
     }
