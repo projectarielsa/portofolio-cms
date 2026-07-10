@@ -96,8 +96,8 @@
                 <div class="absolute -bottom-8 -left-8 h-32 w-32 rounded-full bg-white/5 pointer-events-none"></div>
                 <div class="relative">
                     <div class="flex items-center gap-2 mb-4">
-                        <span class="h-2 w-2 rounded-full bg-emerald-300 animate-pulse"></span>
-                        <span class="text-xs font-bold text-emerald-200 uppercase tracking-widest">Open to Work</span>
+                        <span class="h-2 w-2 rounded-full {{ ($about->open_to_work ?? true) ? 'bg-emerald-300 animate-pulse' : 'bg-slate-400' }}"></span>
+                        <span class="text-xs font-bold {{ ($about->open_to_work ?? true) ? 'text-emerald-200' : 'text-slate-300' }} uppercase tracking-widest">{{ ($about->open_to_work ?? true) ? 'Open to Work' : 'Closed to Work' }}</span>
                     </div>
                     <h2 class="font-display text-2xl font-bold text-white mb-3">Saya sedang mencari pekerjaan</h2>
                     <p class="text-indigo-200 leading-7 text-sm">

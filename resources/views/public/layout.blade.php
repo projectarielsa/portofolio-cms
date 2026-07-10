@@ -292,7 +292,7 @@
 
                 <div class="mt-12 pt-6 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4">
                     <p class="text-xs text-slate-400">© {{ date('Y') }} {{ $about->name ?? config('app.name') }}. Portfolio.</p>
-                    <p class="text-xs text-slate-400">IT Support · Laravel Developer · Open to Work</p>
+                    <p class="text-xs text-slate-400">IT Support · Laravel Developer · {{ ($about->open_to_work ?? true) ? 'Open to Work' : 'Closed to Work' }}</p>
                 </div>
             </div>
         </footer>
