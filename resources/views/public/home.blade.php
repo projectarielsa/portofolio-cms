@@ -21,10 +21,12 @@
         <div class="animate-fadeup">
 
             {{-- Badge --}}
+            @if($about && $about->open_to_work)
             <div class="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-2 mb-8">
                 <span class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
                 <span class="text-xs font-semibold text-emerald-700 tracking-wide">Aktif Mencari Kerja · Open to Work</span>
             </div>
+            @endif
 
             <h1 class="font-display text-4xl font-bold leading-[1.15] tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
                 {{ $about->headline ?? 'IT Support & Laravel Developer' }}
@@ -88,9 +90,9 @@
                                     <p class="text-xs text-slate-400">IT Support · Laravel Dev</p>
                                 </div>
                             </div>
-                            <div class="flex items-center gap-1.5 rounded-full bg-emerald-50 border border-emerald-200 px-3 py-1.5">
-                                <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                                <span class="text-[11px] font-semibold text-emerald-700">Open to Work</span>
+                            <div class="flex items-center gap-1.5 rounded-full {{ ($about->open_to_work ?? true) ? 'bg-emerald-50 border border-emerald-200' : 'bg-slate-100 border border-slate-200' }} px-3 py-1.5">
+                                <span class="h-1.5 w-1.5 rounded-full {{ ($about->open_to_work ?? true) ? 'bg-emerald-400 animate-pulse' : 'bg-slate-400' }}"></span>
+                                <span class="text-[11px] font-semibold {{ ($about->open_to_work ?? true) ? 'text-emerald-700' : 'text-slate-500' }}">{{ ($about->open_to_work ?? true) ? 'Open to Work' : 'Closed to Work' }}</span>
                             </div>
                         </div>
 
@@ -108,7 +110,7 @@
                             </div>
                             <div class="flex items-center justify-between">
                                 <span class="text-xs text-slate-400 uppercase tracking-widest">Status</span>
-                                <span class="text-sm font-semibold text-emerald-600">Open to Work</span>
+                                <span class="text-sm font-semibold {{ ($about->open_to_work ?? true) ? 'text-emerald-600' : 'text-slate-500' }}">{{ ($about->open_to_work ?? true) ? 'Open to Work' : 'Closed to Work' }}</span>
                             </div>
                         </div>
 

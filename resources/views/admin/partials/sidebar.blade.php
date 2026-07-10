@@ -30,9 +30,7 @@
                     ['route' => 'admin.skills.index',       'label' => 'Skills',        'icon' => 'bolt',  'match' => 'admin.skills.*'],
                     ['route' => 'admin.testimonials.index', 'label' => 'Testimonials', 'icon' => 'chat',  'match' => 'admin.testimonials.*'],
                 ],
-                'Settings' => [
-                    ['route' => 'admin.contact-settings.edit', 'label' => 'Contact Settings', 'icon' => 'cog', 'match' => 'admin.contact-settings.*'],
-                ],
+
             ];
 
             $icons = [

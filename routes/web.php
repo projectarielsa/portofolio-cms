@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\Admin\AboutController as AdminAboutController;
-use App\Http\Controllers\Admin\ContactSettingController as AdminContactSettingController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ExperienceController as AdminExperienceController;
 use App\Http\Controllers\Admin\ProjectController as AdminProjectController;
@@ -30,8 +29,7 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::resource('experiences', AdminExperienceController::class)->except('show');
     Route::resource('skills', AdminSkillController::class)->except('show');
     Route::resource('testimonials', AdminTestimonialController::class)->except('show');
-    Route::get('contact-settings/edit', [AdminContactSettingController::class, 'edit'])->name('contact-settings.edit');
-    Route::put('contact-settings', [AdminContactSettingController::class, 'update'])->name('contact-settings.update');
+
 });
 
 require __DIR__.'/auth.php';

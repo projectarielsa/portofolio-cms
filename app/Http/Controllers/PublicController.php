@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ContactSetting;
 use App\Models\Experience;
 use App\Models\Project;
 use App\Models\Service;
@@ -18,7 +17,6 @@ class PublicController extends Controller
             'services' => Service::query()->orderBy('sort_order')->get(),
             'skills' => Skill::query()->orderBy('category')->get(),
             'testimonials' => Testimonial::query()->latest()->take(6)->get(),
-            'contact' => ContactSetting::query()->first(),
         ]);
     }
 
@@ -82,8 +80,6 @@ class PublicController extends Controller
 
     public function contact()
     {
-        return view('public.contact', [
-            'contact' => ContactSetting::query()->first(),
-        ]);
+        return view('public.contact');
     }
 }

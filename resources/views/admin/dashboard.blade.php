@@ -155,7 +155,7 @@
                         ['href' => route('admin.services.create'),       'label' => 'Tambah Service',    'desc' => 'Focus area baru',       'color' => 'sky'],
                         ['href' => route('admin.experiences.create'),    'label' => 'Tambah Experience', 'desc' => 'Riwayat kerja baru',    'color' => 'emerald'],
                         ['href' => route('admin.testimonials.create'),   'label' => 'Tambah Testimonial','desc' => 'Review baru',           'color' => 'amber'],
-                        ['href' => route('admin.contact-settings.edit'), 'label' => 'Atur Contact',      'desc' => 'Info kontak & sosmed',  'color' => 'rose'],
+
                     ];
                     $qaC = [
                         'indigo'  => 'bg-indigo-50  text-indigo-600  border-indigo-100',

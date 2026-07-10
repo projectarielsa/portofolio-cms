@@ -42,11 +42,11 @@
                 <div class="space-y-3">
                     @php
                         $contactItems = [
-                            ['label' => 'Email',     'value' => $contact->email     ?? $about->email     ?? null, 'href' => 'mailto:'.($contact->email ?? $about->email ?? '#')],
-                            ['label' => 'WhatsApp',  'value' => $contact->whatsapp  ?? $about->whatsapp  ?? null, 'href' => 'https://wa.me/'.preg_replace('/[^0-9]/', '', $contact->whatsapp ?? $about->whatsapp ?? '')],
-                            ['label' => 'LinkedIn',  'value' => $contact->linkedin  ?? $about->linkedin  ?? null, 'href' => $contact->linkedin  ?? $about->linkedin  ?? '#'],
-                            ['label' => 'GitHub',    'value' => $contact->github    ?? $about->github    ?? null, 'href' => $contact->github    ?? $about->github    ?? '#'],
-                            ['label' => 'Instagram', 'value' => $contact->instagram ?? $about->instagram ?? null, 'href' => $contact->instagram ?? $about->instagram ?? '#'],
+                            ['label' => 'Email',     'value' => $about->email     ?? null, 'href' => 'mailto:'.($about->email ?? '#')],
+                            ['label' => 'WhatsApp',  'value' => $about->whatsapp  ?? null, 'href' => 'https://wa.me/'.preg_replace('/[^0-9]/', '', $about->whatsapp ?? '')],
+                            ['label' => 'LinkedIn',  'value' => $about->linkedin  ?? null, 'href' => $about->linkedin  ?? '#'],
+                            ['label' => 'GitHub',    'value' => $about->github    ?? null, 'href' => $about->github    ?? '#'],
+                            ['label' => 'Instagram', 'value' => $about->instagram ?? null, 'href' => $about->instagram ?? '#'],
                         ];
                         $iconColors = [
                             'Email'     => ['bg' => 'bg-indigo-50 text-indigo-600', 'border' => 'border-indigo-100'],
@@ -101,19 +101,19 @@
                     </div>
                     <h2 class="font-display text-2xl font-bold text-white mb-3">Saya sedang mencari pekerjaan</h2>
                     <p class="text-indigo-200 leading-7 text-sm">
-                        {{ $contact->cta_text ?? 'Saya terbuka untuk posisi IT Support maupun Web Developer secara full-time. Siap berdiskusi mengenai pengalaman, kemampuan teknis, dan kontribusi yang bisa saya berikan.' }}
+                        {{ $about->cta_text ?? 'Saya terbuka untuk posisi IT Support maupun Web Developer secara full-time. Siap berdiskusi mengenai pengalaman, kemampuan teknis, dan kontribusi yang bisa saya berikan.' }}
                     </p>
 
                     <div class="mt-8 flex flex-wrap gap-3">
-                        <a href="mailto:{{ $contact->email ?? $about->email ?? '#' }}"
+                        <a href="mailto:{{ $about->email ?? '#' }}"
                            class="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-bold text-indigo-700 transition-all hover:bg-indigo-50 hover:-translate-y-0.5 shadow-lg shadow-indigo-900/20">
                             <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/>
                             </svg>
                             Kirim Email
                         </a>
-                        @if ($contact->whatsapp ?? $about->whatsapp ?? null)
-                            <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $contact->whatsapp ?? $about->whatsapp) }}"
+                        @if ($about->whatsapp ?? null)
+                            <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $about->whatsapp) }}"
                                target="_blank"
                                class="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-white/20 hover:-translate-y-0.5">
                                 WhatsApp

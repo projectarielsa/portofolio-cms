@@ -31,7 +31,11 @@ class AboutController extends Controller
             'linkedin' => ['nullable', 'string', 'max:255'],
             'instagram' => ['nullable', 'string', 'max:255'],
             'github' => ['nullable', 'string', 'max:255'],
+            'cta_text' => ['nullable', 'string'],
+            'open_to_work' => ['sometimes', 'boolean'],
         ]);
+
+        $data['open_to_work'] = $request->boolean('open_to_work');
 
         if ($request->hasFile('photo')) {
             $file = $request->file('photo');
