@@ -22,3 +22,11 @@ yarn-error.log
 /.vscode
 /.zed
 /public/uploads
+
+# Docker
+Dockerfile
+docker-startup.sh
+
+# Dependency directories
+composer.lock
+package-lock.json
