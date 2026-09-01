@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\About;
+use App\Models\Education;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Experience;
+use App\Models\Education;
 use App\Models\Project;
 use App\Models\Service;
 use App\Models\Skill;
@@ -23,8 +24,18 @@ class PublicController extends Controller
     public function about()
     {
         return view('public.about', [
-            'experiences' => Experience::query()->latest('start_date')->get(),
-            'skills' => Skill::query()->orderBy('category')->get(),
+            'experiences' => Experience::query()
+                ->latest('start_date')
+                ->get(),
+
+            'skills' => Skill::query()
+                ->orderBy('category')
+                ->get(),
+
+            'educations' => Education::query()
+                ->orderBy('sort_order')
+                ->orderByDesc('end_year')
+                ->get(),
         ]);
     }
 

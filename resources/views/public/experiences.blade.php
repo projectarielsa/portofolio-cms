@@ -16,29 +16,53 @@
 
     <div class="max-w-3xl mb-14">
         <p class="text-xs font-bold uppercase tracking-widest text-indigo-500 mb-4">Experience</p>
-        <h1 class="font-display text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">Timeline pengalaman kerja saya</h1>
-        <p class="mt-5 text-lg leading-8 text-slate-500">Halaman ini merangkum pengalaman yang relevan untuk menunjukkan perkembangan, tanggung jawab, dan konteks kerja saya.</p>
+        <h1 class="font-display text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">Pengalaman Kerja</h1>
+        <p class="mt-5 text-lg leading-8 text-slate-500"></p>
     </div>
 
     <div class="space-y-5">
-        @forelse ($experiences as $experience)
-            <div class="card-hover rounded-2xl border border-slate-200 bg-white p-7 shadow-sm">
-                <div class="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
-                    <div>
-                        <h2 class="font-display text-xl font-bold text-slate-800">{{ $experience->position }}</h2>
-                        <p class="mt-1 text-sm font-semibold text-indigo-600">{{ $experience->company }}</p>
-                    </div>
-                    <span class="shrink-0 rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-medium text-slate-500">
-                        {{ optional($experience->start_date)->format('M Y') ?? '—' }}{{ $experience->end_date ? ' — '.optional($experience->end_date)->format('M Y') : ' — Present' }}
-                    </span>
+    @forelse ($experiences as $experience)
+        <div class="card-hover rounded-2xl border border-slate-200 bg-white p-7 shadow-sm">
+
+            <div class="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+                <div>
+                    <h2 class="font-display text-xl font-bold text-slate-800">
+                        {{ $experience->position }}
+                    </h2>
+
+                    <p class="mt-1 text-sm font-semibold text-indigo-600">
+                        {{ $experience->company }}
+                    </p>
                 </div>
-                <p class="mt-5 leading-7 text-slate-500">{{ $experience->description }}</p>
+
+                <span class="shrink-0 rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-medium text-slate-500">
+                    {{ optional($experience->start_date)->format('M Y') ?? '—' }}
+                    {{ $experience->end_date
+                        ? ' — ' . optional($experience->end_date)->format('M Y')
+                        : ' — Present'
+                    }}
+                </span>
             </div>
-        @empty
-            <div class="rounded-2xl border border-dashed border-slate-200 bg-white px-8 py-14 text-center text-slate-400">
-                Belum ada pengalaman yang ditambahkan.
-            </div>
-        @endforelse
-    </div>
+
+            {{-- Description dengan support paragraf --}}
+            @if($experience->description)
+    <ul class="mt-5 list-disc list-inside space-y-3 leading-7 text-slate-500">
+        @foreach(preg_split('/\r\n|\r|\n/', $experience->description) as $item)
+            @if(trim($item))
+                <li class="pl-1 text-justify">
+                    {{ trim($item) }}
+                </li>
+            @endif
+        @endforeach
+    </ul>
+@endif
+
+        </div>
+    @empty
+        <div class="rounded-2xl border border-dashed border-slate-200 bg-white px-8 py-14 text-center text-slate-400">
+            Belum ada pengalaman yang ditambahkan.
+        </div>
+    @endforelse
+</div>
 </section>
 @endsection

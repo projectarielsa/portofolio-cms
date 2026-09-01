@@ -21,5 +21,10 @@
     "laravel/breeze": "^2.4",
     "pestphp/pest": "*",
     "pestphp/pest-plugin-laravel": "*"
+  },
+  "config": {
+    "allow-plugins": {
+      "pestphp/pest-plugin": true
+    }
   }
 }

@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\SkillController as AdminSkillController;
 use App\Http\Controllers\Admin\TestimonialController as AdminTestimonialController;
 use App\Http\Controllers\PublicController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\EducationController;
 
 Route::get('/', [PublicController::class, 'home'])->name('home');
 Route::get('/about', [PublicController::class, 'about'])->name('about');
@@ -29,7 +30,7 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::resource('experiences', AdminExperienceController::class)->except('show');
     Route::resource('skills', AdminSkillController::class)->except('show');
     Route::resource('testimonials', AdminTestimonialController::class)->except('show');
-
+    Route::resource('educations', EducationController::class)->except(['show']);
 });
 
 require __DIR__.'/auth.php';
