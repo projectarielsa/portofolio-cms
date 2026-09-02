@@ -11,6 +11,8 @@ use App\Http\Controllers\Admin\ResumeController;
 use App\Http\Controllers\PublicController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\EducationController;
+use App\Http\Controllers\Admin\AccountController;
+
 
 Route::get('/', [PublicController::class, 'home'])->name('home');
 Route::get('/about', [PublicController::class, 'about'])->name('about');
@@ -33,6 +35,9 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::resource('testimonials', AdminTestimonialController::class)->except('show');
     Route::resource('educations', EducationController::class)->except(['show']);
     Route::resource('resumes', ResumeController::class)->except('show');
+    Route::get('/account', [AccountController::class, 'edit'])->name('account.edit');
+    Route::put('/account/email', [AccountController::class, 'updateEmail'])->name('account.email');
+    Route::put('/account/password', [AccountController::class, 'updatePassword'])->name('account.password');
 });
 
 require __DIR__.'/auth.php';
