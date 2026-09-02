@@ -161,7 +161,7 @@
     .ps-article {
         background:#fff; border:1px solid #e2e8f0; border-radius:16px;
         padding:32px; box-shadow:0 1px 4px rgba(0,0,0,0.06);
-        font-size:15px; color:#475569; line-height:1.8;
+        font-size:15px; color:#475569; line-height:1.8; text-align:justify;
     }
     .ps-why {
         background:#fff; border:1px solid #e2e8f0; border-radius:16px;
@@ -353,7 +353,7 @@
                 <h3 style="font-size:16px;font-weight:800;color:#1e293b;margin:0 0 10px;line-height:1.35;">
                     {{ $related->title }}
                 </h3>
-                <p style="font-size:13px;color:#64748b;line-height:1.65;margin:0;">
+                <p style="font-size:13px;color:#64748b;line-height:1.65;margin:0; ">
                     {{ Str::limit($related->description, 90) }}
                 </p>
             </a>
