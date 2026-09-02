@@ -30,7 +30,6 @@
                     ['route' => 'admin.educations.index',   'label' => 'Education',    'icon' => 'academic',   'match' => 'admin.educations.*'],
                     ['route' => 'admin.resumes.index', 'label' => 'CV / Resume', 'icon' => 'document', 'match' => 'admin.resumes.*'],
                     ['route' => 'admin.skills.index',       'label' => 'Skills',        'icon' => 'bolt',  'match' => 'admin.skills.*'],
-                    ['route' => 'admin.testimonials.index', 'label' => 'Testimonials', 'icon' => 'chat',  'match' => 'admin.testimonials.*'],
                 ],
 
             ];
