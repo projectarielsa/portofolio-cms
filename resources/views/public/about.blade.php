@@ -29,25 +29,33 @@
 @section('content')
 
 {{-- ABOUT --}}
-<section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-20 pb-12">
-    <div class="flex items-center gap-2 text-xs text-slate-400 mb-12">
-        <a href="{{ route('home') }}" class="hover:text-indigo-600 transition-colors">Home</a>
+<section class="mx-auto max-w-7xl px-4 pt-20 pb-12 sm:px-6 lg:px-8">
+    <div class="mb-12 flex items-center gap-2 text-xs text-slate-400">
+        <a href="{{ route('home') }}" class="transition-colors hover:text-indigo-600">
+            Home
+        </a>
         <span>/</span>
         <span class="text-slate-500">About</span>
     </div>
 
     <div class="grid gap-16 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+
         {{-- LEFT --}}
         <div>
-            <p class="text-xs font-bold uppercase tracking-widest text-indigo-500 mb-4">About Me</p>
+            <p class="mb-4 text-xs font-bold uppercase tracking-widest text-indigo-500">
+                About Me
+            </p>
 
-            <div class="flex flex-col gap-6 sm:flex-row sm:items-center mb-8">
+            <div class="mb-8 flex flex-col gap-6 sm:flex-row sm:items-center">
                 @if ($photoUrl)
-                    <div class="shrink-0 relative">
+                    <div class="relative shrink-0">
                         <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-indigo-300/40 to-violet-300/30 blur-xl"></div>
-                        <img src="{{ $photoUrl }}"
-                             alt="{{ $about->name ?? 'Profile Photo' }}"
-                             class="relative h-24 w-24 rounded-2xl border-2 border-white object-cover shadow-xl sm:h-28 sm:w-28">
+
+                        <img
+                            src="{{ $photoUrl }}"
+                            alt="{{ $about->name ?? 'Profile Photo' }}"
+                            class="relative h-24 w-24 rounded-2xl border-2 border-white object-cover shadow-xl sm:h-28 sm:w-28"
+                        >
                     </div>
                 @endif
 
@@ -55,14 +63,15 @@
                     <h1 class="font-display text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
                         {{ $about->name ?? 'Muhamad Ariel Saputra' }}
                     </h1>
+
                     <p class="mt-2 text-slate-500">
                         {{ $about->headline ?? 'IT Support & Laravel Developer' }}
                     </p>
                 </div>
             </div>
 
-            {{-- Bio --}}
-            <div class="space-y-4 text-slate-500 leading-8 max-w-2xl text-justify">
+            {{-- BIO --}}
+            <div class="max-w-2xl space-y-4 text-justify leading-8 text-slate-500">
                 @php
                     $bio = $about->full_bio ?? $about->short_bio ?? null;
                 @endphp
@@ -74,23 +83,43 @@
                         @endif
                     @endforeach
                 @else
-                    <p>Saya memiliki pengalaman dalam IT Support dan Web Development, terbiasa menangani troubleshooting hardware, software, serta jaringan LAN/WAN.</p>
-                    <p>Selain itu, saya juga berpengalaman dalam membangun dan men-deploy aplikasi web menggunakan Laravel di lingkungan server Linux.</p>
-                    <p>Saya terbuka untuk peluang kerja di bidang IT Support maupun Web Development, dan siap berkontribusi dengan pendekatan yang terstruktur.</p>
+                    <p>
+                        Saya memiliki pengalaman dalam IT Support dan Web Development,
+                        terbiasa menangani troubleshooting hardware, software,
+                        serta jaringan LAN/WAN.
+                    </p>
+
+                    <p>
+                        Selain itu, saya juga berpengalaman dalam membangun dan
+                        men-deploy aplikasi web menggunakan Laravel di lingkungan
+                        server Linux.
+                    </p>
+
+                    <p>
+                        Saya terbuka untuk peluang kerja di bidang IT Support maupun
+                        Web Development, dan siap berkontribusi dengan pendekatan
+                        yang terstruktur.
+                    </p>
                 @endif
             </div>
 
-            {{-- Contact --}}
+            {{-- CONTACT --}}
             <div class="mt-10 grid gap-3 sm:grid-cols-2">
                 <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-                    <p class="text-[10px] uppercase tracking-widest text-slate-400 mb-2 font-semibold">Email</p>
-                    <p class="text-sm font-semibold text-slate-700 break-all">
+                    <p class="mb-2 text-[10px] font-semibold uppercase tracking-widest text-slate-400">
+                        Email
+                    </p>
+
+                    <p class="break-all text-sm font-semibold text-slate-700">
                         {{ $about->email ?? 'muhamadarielsaputra11@gmail.com' }}
                     </p>
                 </div>
 
                 <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-                    <p class="text-[10px] uppercase tracking-widest text-slate-400 mb-2 font-semibold">Location</p>
+                    <p class="mb-2 text-[10px] font-semibold uppercase tracking-widest text-slate-400">
+                        Location
+                    </p>
+
                     <p class="text-sm font-semibold text-slate-700">
                         {{ $about->location ?? 'Indonesia' }}
                     </p>
@@ -99,22 +128,36 @@
         </div>
 
         {{-- RIGHT --}}
-        <div class="lg:sticky lg:top-24 space-y-4">
+        <div class="space-y-4 lg:sticky lg:top-24">
+
+            {{-- STATS --}}
             <div class="grid grid-cols-2 gap-4">
                 <div class="rounded-2xl border border-indigo-100 bg-indigo-50 p-5 text-center">
-                    <p class="font-display text-3xl font-bold text-indigo-700">{{ $experiences->count() }}</p>
-                    <p class="mt-1 text-xs text-indigo-400 uppercase tracking-widest font-semibold">Pengalaman</p>
+                    <p class="font-display text-3xl font-bold text-indigo-700">
+                        {{ $experiences->count() }}
+                    </p>
+
+                    <p class="mt-1 text-xs font-semibold uppercase tracking-widest text-indigo-400">
+                        Pengalaman
+                    </p>
                 </div>
 
                 <div class="rounded-2xl border border-violet-100 bg-violet-50 p-5 text-center">
-                    <p class="font-display text-3xl font-bold text-violet-700">{{ $skills->count() }}</p>
-                    <p class="mt-1 text-xs text-violet-400 uppercase tracking-widest font-semibold">Skills</p>
+                    <p class="font-display text-3xl font-bold text-violet-700">
+                        {{ $skills->count() }}
+                    </p>
+
+                    <p class="mt-1 text-xs font-semibold uppercase tracking-widest text-violet-400">
+                        Skills
+                    </p>
                 </div>
             </div>
 
-            {{-- Core Strength --}}
+            {{-- CORE STRENGTH --}}
             <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-                <p class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">Core Strengths</p>
+                <p class="mb-4 text-xs font-bold uppercase tracking-widest text-slate-400">
+                    Core Strengths
+                </p>
 
                 <div class="space-y-3">
                     @foreach([
@@ -126,16 +169,21 @@
                         'System Documentation'
                     ] as $strength)
                         <div class="flex items-center gap-3">
-                            <div class="h-1.5 w-1.5 rounded-full bg-indigo-400 shrink-0"></div>
-                            <span class="text-sm text-slate-600">{{ $strength }}</span>
+                            <div class="h-1.5 w-1.5 shrink-0 rounded-full bg-indigo-400"></div>
+
+                            <span class="text-sm text-slate-600">
+                                {{ $strength }}
+                            </span>
                         </div>
                     @endforeach
                 </div>
             </div>
 
-            {{-- Technologies --}}
+            {{-- TECHNOLOGIES --}}
             <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-                <p class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">Technologies</p>
+                <p class="mb-4 text-xs font-bold uppercase tracking-widest text-slate-400">
+                    Technologies
+                </p>
 
                 <div class="flex flex-wrap gap-2">
                     @forelse ($skills->take(12) as $skill)
@@ -143,7 +191,9 @@
                             {{ $skill->name }}
                         </span>
                     @empty
-                        <span class="text-slate-400 text-sm">Tambahkan skills dari CMS.</span>
+                        <span class="text-sm text-slate-400">
+                            Tambahkan skills dari CMS.
+                        </span>
                     @endforelse
                 </div>
             </div>
@@ -151,16 +201,26 @@
     </div>
 </section>
 
+
 {{-- EXPERIENCE --}}
-<section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 border-t border-slate-100">
-    <p class="text-xs font-bold uppercase tracking-widest text-violet-500 mb-3">Career</p>
-    <h2 class="font-display text-3xl font-bold tracking-tight text-slate-900 mb-10">Pengalaman Kerja</h2>
+<section class="mx-auto max-w-7xl border-t border-slate-100 px-4 py-16 sm:px-6 lg:px-8">
+    <p class="mb-3 text-xs font-bold uppercase tracking-widest text-violet-500">
+        Career
+    </p>
+
+    <h2 class="mb-10 font-display text-3xl font-bold tracking-tight text-slate-900">
+        Pengalaman Kerja
+    </h2>
 
     <div class="relative">
-        <div class="absolute top-2 bottom-2 hidden lg:block w-px bg-gradient-to-b from-indigo-300 via-violet-200 to-transparent" style="left: 11px;"></div>
+        <div
+            class="absolute top-2 bottom-2 hidden w-px bg-gradient-to-b from-indigo-300 via-violet-200 to-transparent lg:block"
+            style="left: 11px;"
+        ></div>
 
         <div class="space-y-5">
             @forelse ($experiences as $experience)
+
                 @php
                     $startDate = $experience->start_date
                         ? Carbon::parse($experience->start_date)->format('M Y')
@@ -172,16 +232,21 @@
                 @endphp
 
                 <div class="relative lg:pl-10">
-                    <div class="absolute hidden lg:flex h-5 w-5 items-center justify-center rounded-full border-2 border-indigo-300 bg-white shadow-sm" style="left: 3px; top: 20px;">
+                    <div
+                        class="absolute hidden h-5 w-5 items-center justify-center rounded-full border-2 border-indigo-300 bg-white shadow-sm lg:flex"
+                        style="left: 3px; top: 20px;"
+                    >
                         <div class="h-2 w-2 rounded-full bg-indigo-500"></div>
                     </div>
 
                     <div class="card-hover rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-                        <div class="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+                        <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+
                             <div>
                                 <h3 class="font-display text-xl font-bold text-slate-800">
                                     {{ $experience->position }}
                                 </h3>
+
                                 <p class="mt-1 text-sm font-semibold text-indigo-600">
                                     {{ $experience->company }}
                                 </p>
@@ -193,43 +258,66 @@
                         </div>
 
                         @if ($experience->description)
-                            <p class="mt-4 text-sm leading-7 text-slate-500 whitespace-pre-line">
-                                {{ $experience->description }}
-                            </p>
+                            @php
+                                $lines = preg_split(
+                                    '/\r\n|\r|\n/',
+                                    trim($experience->description)
+                                );
+                            @endphp
+
+                            <div class="mt-4 text-sm leading-7 text-slate-500">
+                                <ul class="list-disc space-y-1 pl-5">
+                                    @foreach ($lines as $line)
+                                        @if (trim($line) !== '')
+                                            <li>
+                                                {{ preg_replace('/^[•\-\*]\s*/u', '', trim($line)) }}
+                                            </li>
+                                        @endif
+                                    @endforeach
+                                </ul>
+                            </div>
                         @endif
                     </div>
                 </div>
+
             @empty
-                <div class="rounded-2xl border border-dashed border-slate-200 p-8 text-center text-slate-400 bg-white">
+
+                <div class="rounded-2xl border border-dashed border-slate-200 bg-white p-8 text-center text-slate-400">
                     Tambahkan pengalaman kerja dari CMS.
                 </div>
+
             @endforelse
         </div>
     </div>
 </section>
 
+
 {{-- EDUCATION + CV --}}
-<section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 border-t border-slate-100">
+<section class="mx-auto max-w-7xl border-t border-slate-100 px-4 py-16 sm:px-6 lg:px-8">
     <div class="grid gap-16 lg:grid-cols-2">
 
         {{-- EDUCATION --}}
         <div>
-            <p class="text-xs font-bold uppercase tracking-widest text-emerald-500 mb-3">Education</p>
-            <h2 class="font-display text-3xl font-bold tracking-tight text-slate-900 mb-8">
+            <p class="mb-3 text-xs font-bold uppercase tracking-widest text-emerald-500">
+                Education
+            </p>
+
+            <h2 class="mb-8 font-display text-3xl font-bold tracking-tight text-slate-900">
                 Latar Belakang Akademik
             </h2>
 
             <div class="space-y-4">
                 @forelse ($educations as $education)
+
                     <div class="card-hover rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
                         <div class="flex items-start gap-4">
 
-                            {{-- Icon --}}
-                            <div class="h-11 w-11 rounded-xl bg-violet-50 border border-violet-100 flex items-center justify-center shrink-0">
+                            {{-- ICON --}}
+                            <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-violet-100 bg-violet-50">
                                 <span class="text-xs font-bold text-violet-600">
                                     @if (Str::contains(strtolower($education->degree ?? ''), 'sarjana'))
                                         UNI
-                                    @elseif (Str::contains(strtolower($education->degree ?? ''), 'sekolah'))
+                                    @elseif (Str::contains(strtolower($education->degree ?? ''), 'smk'))
                                         SMK
                                     @else
                                         EDU
@@ -237,13 +325,12 @@
                                 </span>
                             </div>
 
-                            {{-- Content --}}
+                            {{-- CONTENT --}}
                             <div class="flex-1">
                                 <h3 class="font-semibold text-slate-800">
                                     {{ $education->institution }}
                                 </h3>
 
-                                {{-- Degree · Jurusan · Tahun --}}
                                 <p class="mt-1 text-sm text-slate-500">
                                     @if ($education->degree)
                                         {{ $education->degree }}
@@ -258,9 +345,8 @@
                                     @endif
                                 </p>
 
-                                {{-- IPK hanya Sarjana, selain itu Nilai --}}
                                 @if (!empty($education->gpa))
-                                    <div class="mt-3 inline-flex items-center gap-2 rounded-full bg-emerald-50 border border-emerald-200 px-3 py-1">
+                                    <div class="mt-3 inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1">
                                         <span class="text-xs font-bold text-emerald-700">
                                             @if (Str::contains(strtolower($education->degree ?? ''), 'sarjana'))
                                                 IPK {{ $education->gpa }}
@@ -272,86 +358,177 @@
                                 @endif
 
                                 @if ($education->description)
-                                    <p class="mt-3 text-sm leading-6 text-slate-500 whitespace-pre-line">
+                                    <p class="mt-3 whitespace-pre-line text-sm leading-6 text-slate-500">
                                         {{ $education->description }}
                                     </p>
                                 @endif
                             </div>
                         </div>
                     </div>
+
                 @empty
-                    <div class="rounded-2xl border border-dashed border-slate-200 p-8 text-center text-slate-400 bg-white">
+
+                    <div class="rounded-2xl border border-dashed border-slate-200 bg-white p-8 text-center text-slate-400">
                         Tambahkan riwayat pendidikan dari CMS.
                     </div>
+
                 @endforelse
             </div>
         </div>
 
+
         {{-- CV --}}
         <div>
-            <p class="text-xs font-bold uppercase tracking-widest text-amber-500 mb-3">Resume</p>
-            <h2 class="font-display text-3xl font-bold tracking-tight text-slate-900 mb-3">
-                Download CV
+            <p class="mb-3 text-xs font-bold uppercase tracking-widest text-amber-500">
+                Resume
+            </p>
+
+            <h2 class="mb-3 font-display text-3xl font-bold tracking-tight text-slate-900">
+                Daftar Riwayat Hidup
             </h2>
 
-            <p class="text-slate-500 mb-8 leading-7">
-                Tersedia dua versi CV yang disesuaikan dengan posisi yang dilamar.
+            <p class="mb-8 leading-7 text-slate-500">
+               
             </p>
 
             <div class="space-y-4">
 
-                {{-- CV IT SUPPORT --}}
-                <div class="card-hover rounded-2xl border border-indigo-100 bg-indigo-50 p-6">
-                    <div class="flex items-center justify-between gap-4">
-                        <div>
-                            <div class="flex items-center gap-2 mb-2">
-                                <div class="h-2 w-2 rounded-full bg-indigo-500"></div>
-                                <span class="text-xs uppercase tracking-widest text-indigo-500 font-bold">
-                                    IT Support
-                                </span>
+                @forelse ($resumes as $resume)
+
+                    <div class="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-indigo-200 hover:shadow-lg">
+
+                        <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+
+                            {{-- CV INFO --}}
+                            <div class="flex min-w-0 items-center gap-4">
+
+                                {{-- PDF ICON --}}
+                                <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-red-100 bg-red-50">
+                                    <svg
+                                        class="h-6 w-6 text-red-500"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                        stroke-width="1.8"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.875 1.875 0 0 1 12.75 6.375v-1.5A3.375 3.375 0 0 0 9.375 1.5H6.75A3.75 3.75 0 0 0 3 5.25v13.5a3.75 3.75 0 0 0 3.75 3.75h5.625"
+                                        />
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            d="M12.75 6.375h3.75"
+                                        />
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            d="M15.75 18.75h4.5m-2.25-2.25v4.5"
+                                        />
+                                    </svg>
+                                </div>
+
+                                {{-- TITLE --}}
+                                <div class="min-w-0">
+                                    <h3 class="truncate font-semibold text-slate-800">
+                                        {{ $resume->title }}
+                                    </h3>
+
+                                    @if ($resume->category)
+                                        <p class="mt-1 text-xs font-medium text-indigo-500">
+                                            {{ $resume->category }}
+                                        </p>
+                                    @endif
+
+                                </div>
                             </div>
 
-                            <h3 class="font-semibold text-slate-800">CV IT Support</h3>
-                            <p class="mt-1.5 text-sm text-slate-500">
-                                Troubleshooting, jaringan LAN/WAN, Mikrotik, Linux server.
-                            </p>
-                        </div>
 
-                        <a href="{{ asset('cv/cv-it-support.pdf') }}"
-                           target="_blank"
-                           class="shrink-0 rounded-xl btn-primary px-4 py-2.5 text-sm font-bold shadow-md shadow-indigo-200">
-                            Download
-                        </a>
-                    </div>
-                </div>
+                            {{-- ACTION --}}
+                            <div class="flex shrink-0 items-center gap-2">
 
-                {{-- CV PROGRAMMER --}}
-                <div class="card-hover rounded-2xl border border-violet-100 bg-violet-50 p-6">
-                    <div class="flex items-center justify-between gap-4">
-                        <div>
-                            <div class="flex items-center gap-2 mb-2">
-                                <div class="h-2 w-2 rounded-full bg-violet-500"></div>
-                                <span class="text-xs uppercase tracking-widest text-violet-500 font-bold">
-                                    Developer
-                                </span>
+                                {{-- PREVIEW --}}
+                                <a
+                                    href="{{ asset($resume->file_path) }}"
+                                    target="_blank"
+                                    title="Preview CV"
+                                    class="hidden h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-500 transition hover:border-indigo-200 hover:text-indigo-600 sm:inline-flex"
+                                >
+                                    <svg
+                                        class="h-4 w-4"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            d="M2.25 12S5.25 6.75 12 6.75 21.75 12 21.75 12 18.75 17.25 12 17.25 2.25 12 2.25 12Z"
+                                        />
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            d="M12 14.25a2.25 2.25 0 1 0 0-4.5 2.25 2.25 0 0 0 0 4.5Z"
+                                        />
+                                    </svg>
+                                </a>
+
+                                {{-- DOWNLOAD --}}
+                                <a
+                                    href="{{ asset($resume->file_path) }}"
+                                    download
+                                    class="inline-flex items-center justify-center gap-2 rounded-xl bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-md shadow-indigo-200 transition hover:bg-indigo-700 hover:shadow-lg"
+                                >
+                                    <svg
+                                        class="h-4 w-4"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            d="M12 3v12m0 0 4-4m-4 4-4-4m-3 9h14"
+                                        />
+                                    </svg>
+
+                                    <span>Download</span>
+                                </a>
+
                             </div>
-
-                            <h3 class="font-semibold text-slate-800">CV Programmer</h3>
-                            <p class="mt-1.5 text-sm text-slate-500">
-                                Laravel, MySQL, API integration, deployment aplikasi web.
-                            </p>
                         </div>
-
-                        <a href="{{ asset('cv/cv-programmer.pdf') }}"
-                           target="_blank"
-                           class="shrink-0 rounded-xl border border-violet-200 bg-white px-4 py-2.5 text-sm font-bold text-violet-700 transition-all hover:bg-violet-100 shadow-sm">
-                            Download
-                        </a>
                     </div>
-                </div>
+
+                @empty
+
+                    <div class="rounded-2xl border border-dashed border-slate-200 bg-white p-8 text-center">
+                        <svg
+                            class="mx-auto mb-3 h-8 w-8 text-slate-300"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            stroke-width="1.5"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.875 1.875 0 0 1 12.75 6.375v-1.5A3.375 3.375 0 0 0 9.375 1.5H6.75A3.75 3.75 0 0 0 3 5.25v13.5a3.75 3.75 0 0 0 3.75 3.75h10.5a3.75 3.75 0 0 0 3.75-3.75"
+                            />
+                        </svg>
+
+                        <p class="text-sm text-slate-400">
+                            CV belum tersedia.
+                        </p>
+                    </div>
+
+                @endforelse
 
             </div>
         </div>
+
     </div>
 </section>
 

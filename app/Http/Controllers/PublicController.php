@@ -8,6 +8,7 @@ use App\Models\Project;
 use App\Models\Service;
 use App\Models\Skill;
 use App\Models\Testimonial;
+use App\Models\Resume;
 
 class PublicController extends Controller
 {
@@ -36,6 +37,12 @@ class PublicController extends Controller
                 ->orderBy('sort_order')
                 ->orderByDesc('end_year')
                 ->get(),
+
+            'resumes' => Resume::query()
+            ->where('is_active', true)
+            ->orderBy('sort_order')
+            ->get(),
+            
         ]);
     }
 
