@@ -21,11 +21,11 @@ class ExperienceController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'position' => ['required','string','max:255'],
-            'company' => ['required','string','max:255'],
-            'start_date' => ['nullable','date'],
-            'end_date' => ['nullable','date'],
-            'description' => ['nullable','string'],
+            'position' => ['required', 'string', 'max:255'],
+            'company' => ['required', 'string', 'max:255'],
+            'start_date' => ['nullable', 'date'],
+            'end_date' => ['nullable', 'date'],
+            'description' => ['nullable', 'string'],
         ]);
         Experience::create($data);
         return redirect()->route('admin.experiences.index')->with('success', 'Experience berhasil dibuat.');
@@ -39,11 +39,11 @@ class ExperienceController extends Controller
     public function update(Request $request, Experience $experience)
     {
         $data = $request->validate([
-            'position' => ['required','string','max:255'],
-            'company' => ['required','string','max:255'],
-            'start_date' => ['nullable','date'],
-            'end_date' => ['nullable','date'],
-            'description' => ['nullable','string'],
+            'position' => ['required', 'string', 'max:255'],
+            'company' => ['required', 'string', 'max:255'],
+            'start_date' => ['nullable', 'date'],
+            'end_date' => ['nullable', 'date'],
+            'description' => ['nullable', 'string'],
         ]);
         $experience->update($data);
         return redirect()->route('admin.experiences.index')->with('success', 'Experience berhasil diperbarui.');

@@ -100,7 +100,7 @@
 
                 <div>
                     <p class="font-display text-3xl font-bold text-slate-900">
-                        {{ $skills->count() }}+
+                        {{ $skills->count() }}
                     </p>
 
                     <p class="mt-1 text-xs text-slate-400 uppercase tracking-widest">
