@@ -120,7 +120,7 @@
                 </div>
             </header>
 
-            <main class="flex-1 p-6 lg:p-8 page-content">
+            <main class="flex-1 p-6 lg:p-8 page-content lg:ml-64">
                 <x-flash />
                 @yield('content')
             </main>

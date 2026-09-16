@@ -10,6 +10,27 @@
     ============================================ --}}
     @php
         $footerServices = $services ?? collect();
+
+        /*
+        |--------------------------------------------------------------------------
+        | OPEN GRAPH IMAGE
+        |--------------------------------------------------------------------------
+        | Prioritas:
+        | 1. Foto profile dari About
+        | 2. Foto default public/images/og-default.jpg
+        |
+        | Pastikan $about->photo berisi path seperti:
+        | storage/profile.jpg
+        | atau
+        | images/profile.jpg
+        |--------------------------------------------------------------------------
+        */
+
+        $ogImage = isset($about) && !empty($about->photo)
+            ? asset($about->photo)
+            : asset('images/og-default.jpg');
+
+        $personName = $about->name ?? 'Muhamad Ariel Saputra';
     @endphp
 
 
@@ -17,7 +38,7 @@
         SEO: BASIC
     ============================================ --}}
     <title>
-        @yield('seo_title', $about->name ?? 'Portfolio')
+        @yield('seo_title', $personName)
         —
         @yield('seo_subtitle', 'IT Support & Laravel Developer')
     </title>
@@ -27,7 +48,7 @@
         content="@yield(
             'seo_description',
             'Portfolio ' .
-                ($about->name ?? 'Muhamad Ariel Saputra') .
+                $personName .
                 ' — IT Support & Laravel Developer berpengalaman di bidang sistem, jaringan, dan pengembangan aplikasi web berbasis Laravel. Tersedia untuk posisi full-time.'
         )"
     >
@@ -36,14 +57,14 @@
         name="keywords"
         content="@yield(
             'seo_keywords',
-            ($about->name ?? 'Muhamad Ariel Saputra') .
+            $personName .
                 ', IT Support, Laravel Developer, Web Developer, PHP Developer, Linux, Networking, Portfolio'
         )"
     >
 
     <meta
         name="author"
-        content="{{ $about->name ?? 'Muhamad Ariel Saputra' }}"
+        content="{{ $personName }}"
     >
 
     <meta
@@ -72,14 +93,14 @@
 
     <meta
         property="og:site_name"
-        content="{{ $about->name ?? config('app.name') }}"
+        content="{{ $personName }}"
     >
 
     <meta
         property="og:title"
         content="@yield(
             'og_title',
-            ($about->name ?? 'Muhamad Ariel Saputra') .
+            $personName .
                 ' — IT Support & Laravel Developer'
         )"
     >
@@ -89,19 +110,42 @@
         content="@yield(
             'og_description',
             'Portfolio ' .
-                ($about->name ?? 'Muhamad Ariel Saputra') .
+                $personName .
                 ' — IT Support & Laravel Developer berpengalaman. Open to Work.'
         )"
     >
 
+    {{-- ============================================
+        OPEN GRAPH IMAGE
+    ============================================ --}}
     <meta
         property="og:image"
-        content="@yield(
-            'og_image',
-            !empty($about->photo)
-                ? asset($about->photo)
-                : asset('images/og-default.jpg')
-        )"
+        content="@yield('og_image', $ogImage)"
+    >
+
+    <meta
+        property="og:image:secure_url"
+        content="@yield('og_image', $ogImage)"
+    >
+
+    <meta
+        property="og:image:type"
+        content="image/jpeg"
+    >
+
+    <meta
+        property="og:image:width"
+        content="1200"
+    >
+
+    <meta
+        property="og:image:height"
+        content="630"
+    >
+
+    <meta
+        property="og:image:alt"
+        content="{{ $personName }} — IT Support & Laravel Developer"
     >
 
     <meta
@@ -122,7 +166,7 @@
         name="twitter:title"
         content="@yield(
             'og_title',
-            ($about->name ?? 'Muhamad Ariel Saputra') .
+            $personName .
                 ' — IT Support & Laravel Developer'
         )"
     >
@@ -132,19 +176,19 @@
         content="@yield(
             'og_description',
             'Portfolio ' .
-                ($about->name ?? 'Muhamad Ariel Saputra') .
+                $personName .
                 ' — IT Support & Laravel Developer berpengalaman. Open to Work.'
         )"
     >
 
     <meta
         name="twitter:image"
-        content="@yield(
-            'og_image',
-            !empty($about->photo)
-                ? asset($about->photo)
-                : asset('images/og-default.jpg')
-        )"
+        content="@yield('og_image', $ogImage)"
+    >
+
+    <meta
+        name="twitter:image:alt"
+        content="{{ $personName }} — IT Support & Laravel Developer"
     >
 
 
@@ -172,6 +216,8 @@
             ),
 
             "url": @json(url('/')),
+
+            "image": @json($ogImage),
 
             "email": @json($about->email ?? ''),
 
