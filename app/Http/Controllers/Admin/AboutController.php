@@ -26,7 +26,7 @@ class AboutController extends Controller
             'headline' => ['nullable', 'string', 'max:255'],
             'short_bio' => ['nullable', 'string'],
             'full_bio' => ['nullable', 'string'],
-            'photo' => ['nullable', 'image', 'max:10240'],
+            'photo' => ['nullable', 'image'],
             'email' => ['nullable', 'email', 'max:255'],
             'whatsapp' => ['nullable', 'string', 'max:255'],
             'location' => ['nullable', 'string', 'max:255'],

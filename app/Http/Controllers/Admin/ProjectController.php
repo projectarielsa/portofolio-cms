@@ -4,15 +4,18 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Project;
+use App\Traits\CompressesImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class ProjectController extends Controller
 {
+    use CompressesImage;
+
     public function index()
     {
         return view('admin.projects.index', [
-            'projects' => Project::latest()->paginate(12),
+            'projects' => Project::query()->latest()->paginate(10),
         ]);
     }
 
@@ -50,6 +53,9 @@ class ProjectController extends Controller
         $data['slug'] = Str::slug($data['title']);
 
         if ($request->hasFile('cover_image')) {
+            if ($project->cover_image && file_exists(public_path($project->cover_image))) {
+                @unlink(public_path($project->cover_image));
+            }
             $data['cover_image'] = $this->uploadFile($request->file('cover_image'));
         }
 
@@ -66,7 +72,7 @@ class ProjectController extends Controller
             if (!in_array($oldPath, $existingPhotos)) {
                 $fullPath = public_path($oldPath);
                 if (file_exists($fullPath)) {
-                    unlink($fullPath);
+                    @unlink($fullPath);
                 }
             }
         }
@@ -80,6 +86,16 @@ class ProjectController extends Controller
 
     public function destroy(Project $project)
     {
+        if ($project->cover_image && file_exists(public_path($project->cover_image))) {
+            @unlink(public_path($project->cover_image));
+        }
+
+        foreach ($project->gallery_list as $img) {
+            if (file_exists(public_path($img))) {
+                @unlink(public_path($img));
+            }
+        }
+
         $project->delete();
 
         return redirect()->route('admin.projects.index')->with('success', 'Project berhasil dihapus.');
@@ -89,8 +105,8 @@ class ProjectController extends Controller
     {
         return $request->validate([
             'title'        => ['required', 'string', 'max:255'],
-            'cover_image'  => ['nullable', 'image', 'max:4096'],
-            'gallery.*'    => ['nullable', 'image', 'max:4096'],
+            'cover_image'  => ['nullable', 'image'],
+            'gallery.*'    => ['nullable', 'image'],
             'category'     => ['nullable', 'string', 'max:100'],
             'description'  => ['nullable', 'string'],
             'content'      => ['nullable', 'string'],
@@ -105,9 +121,7 @@ class ProjectController extends Controller
 
     protected function uploadFile(\Illuminate\Http\UploadedFile $file): string
     {
-        $filename = time() . '_' . Str::slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)) . '.' . $file->getClientOriginalExtension();
-        $file->move(public_path('uploads/projects'), $filename);
-        return 'uploads/projects/' . $filename;
+        return $this->compressAndSaveImage($file, 'uploads/projects', maxDimension: 1600, quality: 82);
     }
 
     protected function uploadGallery(Request $request): array

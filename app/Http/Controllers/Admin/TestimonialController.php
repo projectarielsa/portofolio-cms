@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Testimonial;
+use App\Traits\CompressesImage;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class TestimonialController extends Controller
 {
+    use CompressesImage;
+
     public function index()
     {
         return view('admin.testimonials.index', ['testimonials' => Testimonial::query()->latest()->paginate(12)]);
@@ -23,10 +25,7 @@ class TestimonialController extends Controller
     {
         $data = $this->validatedData($request);
         if ($request->hasFile('photo')) {
-            $file = $request->file('photo');
-            $filename = time().'_'.Str::slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)).'.'.$file->getClientOriginalExtension();
-            $file->move(public_path('uploads/testimonials'), $filename);
-            $data['photo'] = 'uploads/testimonials/'.$filename;
+            $data['photo'] = $this->compressAndSaveImage($request->file('photo'), 'uploads/testimonials', maxDimension: 800, quality: 80);
         }
         Testimonial::create($data);
         return redirect()->route('admin.testimonials.index')->with('success', 'Testimonial berhasil dibuat.');
@@ -41,10 +40,10 @@ class TestimonialController extends Controller
     {
         $data = $this->validatedData($request);
         if ($request->hasFile('photo')) {
-            $file = $request->file('photo');
-            $filename = time().'_'.Str::slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)).'.'.$file->getClientOriginalExtension();
-            $file->move(public_path('uploads/testimonials'), $filename);
-            $data['photo'] = 'uploads/testimonials/'.$filename;
+            if ($testimonial->photo && file_exists(public_path($testimonial->photo))) {
+                @unlink(public_path($testimonial->photo));
+            }
+            $data['photo'] = $this->compressAndSaveImage($request->file('photo'), 'uploads/testimonials', maxDimension: 800, quality: 80);
         }
         $testimonial->update($data);
         return redirect()->route('admin.testimonials.index')->with('success', 'Testimonial berhasil diperbarui.');
@@ -52,6 +51,9 @@ class TestimonialController extends Controller
 
     public function destroy(Testimonial $testimonial)
     {
+        if ($testimonial->photo && file_exists(public_path($testimonial->photo))) {
+            @unlink(public_path($testimonial->photo));
+        }
         $testimonial->delete();
         return redirect()->route('admin.testimonials.index')->with('success', 'Testimonial berhasil dihapus.');
     }
@@ -63,7 +65,7 @@ class TestimonialController extends Controller
             'role' => ['nullable', 'string', 'max:255'],
             'company' => ['nullable', 'string', 'max:255'],
             'message' => ['required', 'string'],
-            'photo' => ['nullable', 'image', 'max:2048'],
+            'photo' => ['nullable', 'image'],
         ]);
     }
 }
