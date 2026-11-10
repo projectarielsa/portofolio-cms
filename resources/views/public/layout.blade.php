@@ -830,8 +830,8 @@
                             </span>
                         </a>
 
-                        <p class="text-xs leading-relaxed text-slate-600 text-justify">
-                            {{ $about->short_bio ?? 'IT Support & Web Developer yang berfokus pada infrastruktur sistem, pemeliharaan jaringan Linux/Windows, dan pembuatan aplikasi web modern dengan Laravel.' }}
+                        <p class="text-xs leading-relaxed text-slate-600">
+                            IT Support & Web Developer yang berfokus pada infrastruktur sistem, jaringan, administrasi server Linux, serta pengembangan aplikasi web berbasis Laravel.
                         </p>
 
                         <div class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-3 py-1">
