@@ -295,118 +295,93 @@
     {{-- EXPERIENCE --}}
     <section class="mx-auto max-w-7xl border-t border-slate-100 px-4 py-16 sm:px-6 lg:px-8">
 
-        <p class="mb-3 text-xs font-bold uppercase tracking-widest text-violet-700">
-            Career
-        </p>
-
-
-        <h2 class="mb-10 font-display text-3xl font-bold tracking-tight text-slate-900">
-            Pengalaman Kerja
-        </h2>
-
-
-        <div class="relative">
-
-            {{-- TIMELINE LINE --}}
-            <div class="absolute top-2 bottom-2 hidden w-px bg-gradient-to-b from-indigo-300 via-violet-200 to-transparent lg:block"
-                style="left: 11px;"></div>
-
-
-            <div class="space-y-5">
-
-                @forelse ($experiences as $experience)
-
-                    @php
-
-                        $startDate = $experience->start_date
-                            ? Carbon::parse($experience->start_date)->format('M Y')
-                            : null;
-
-                        $endDate = $experience->end_date ? Carbon::parse($experience->end_date)->format('M Y') : null;
-
-                    @endphp
-
-
-                    <div class="relative lg:pl-10">
-
-                        {{-- TIMELINE DOT --}}
-                        <div class="absolute hidden h-5 w-5 items-center justify-center rounded-full border-2 border-indigo-300 bg-white shadow-sm lg:flex"
-                            style="left: 3px; top: 20px;">
-                            <div class="h-2 w-2 rounded-full bg-indigo-500"></div>
-                        </div>
-
-
-                        {{-- CARD --}}
-                        <div class="card-hover rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-
-                            <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-
-                                <div>
-
-                                    <h3 class="font-display text-xl font-bold text-slate-800">
-                                        {{ $experience->position }}
-                                    </h3>
-
-                                    <p class="mt-1 text-sm font-semibold text-indigo-600">
-                                        {{ $experience->company }}
-                                    </p>
-
-                                </div>
-
-
-                                {{-- DATE --}}
-                                <span
-                                    class="shrink-0 rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-medium text-slate-600">
-
-                                    {{ $startDate ?? '—' }}
-                                    —
-                                    {{ $endDate ?? 'Present' }}
-
-                                </span>
-
-                            </div>
-
-
-                            {{-- DESCRIPTION --}}
-                            @if ($experience->description)
-                                @php
-
-                                    $lines = preg_split('/\r\n|\r|\n/', trim($experience->description));
-
-                                @endphp
-
-
-                                <div class="mt-4 text-sm leading-7 text-slate-600">
-
-                                    <ul class="list-disc space-y-1 pl-5">
-
-                                        @foreach ($lines as $line)
-                                            @if (trim($line) !== '')
-                                                <li>
-                                                    {{ preg_replace('/^[•\-\*]\s*/u', '', trim($line)) }}
-                                                </li>
-                                            @endif
-                                        @endforeach
-
-                                    </ul>
-
-                                </div>
-                            @endif
-
-                        </div>
-
-                    </div>
-
-                @empty
-
-                    <div class="rounded-2xl border border-dashed border-slate-200 bg-white p-8 text-center text-slate-600">
-                        Tambahkan pengalaman kerja dari CMS.
-                    </div>
-
-                @endforelse
-
+        <div class="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+                <p class="mb-2 text-xs font-bold uppercase tracking-widest text-violet-700">
+                    Career Snapshot
+                </p>
+                <h2 class="font-display text-3xl font-bold tracking-tight text-slate-900">
+                    Pengalaman Kerja
+                </h2>
             </div>
+            <a href="{{ route('experiences') }}" class="group inline-flex items-center gap-2 text-xs font-bold text-indigo-600 transition hover:text-indigo-800">
+                <span>Lihat Timeline Lengkap</span>
+                <svg class="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                </svg>
+            </a>
+        </div>
 
+        <div class="grid gap-5 md:grid-cols-2">
+            @forelse ($experiences as $experience)
+                @php
+                    $startDate = $experience->start_date ? Carbon::parse($experience->start_date) : null;
+                    $endDate = $experience->end_date ? Carbon::parse($experience->end_date) : null;
+                    $isCurrent = is_null($endDate);
+
+                    $diffEnd = $endDate ?? now();
+                    $diff = $startDate ? $startDate->diff($diffEnd) : null;
+                    $duration = [];
+                    if ($diff && $diff->y > 0) $duration[] = $diff->y . ' thn';
+                    if ($diff && $diff->m > 0) $duration[] = $diff->m . ' bln';
+                    $durStr = empty($duration) ? '< 1 bln' : implode(' ', $duration);
+
+                    $lines = $experience->description ? preg_split('/\r\n|\r|\n/', trim($experience->description)) : [];
+                    $topLines = array_slice(array_filter($lines, fn($l) => trim($l) !== ''), 0, 2);
+                @endphp
+
+                <div class="flex flex-col justify-between rounded-2xl border border-slate-200/90 bg-white p-6 shadow-xs transition-all hover:border-indigo-300 hover:shadow-md">
+                    <div>
+                        <div class="mb-2 flex items-start justify-between gap-3">
+                            <span class="text-xs font-semibold text-slate-500">
+                                {{ optional($startDate)->format('M Y') ?? '—' }} — {{ $endDate ? optional($endDate)->format('M Y') : 'Present' }}
+                            </span>
+                            @if ($isCurrent)
+                                <span class="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-0.5 text-[11px] font-bold text-emerald-700">
+                                    <span class="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                                    Aktif
+                                </span>
+                            @else
+                                <span class="rounded-full border border-indigo-100 bg-indigo-50 px-2.5 py-0.5 text-[11px] font-semibold text-indigo-700">
+                                    {{ $durStr }}
+                                </span>
+                            @endif
+                        </div>
+
+                        <h3 class="font-display text-lg font-bold text-slate-900">
+                            {{ $experience->position }}
+                        </h3>
+
+                        <p class="mt-1 text-sm font-semibold text-indigo-600">
+                            {{ $experience->company }}
+                        </p>
+
+                        @if (!empty($topLines))
+                            <ul class="mt-4 space-y-1.5 text-xs leading-relaxed text-slate-600">
+                                @foreach ($topLines as $line)
+                                    <li class="flex items-start gap-2">
+                                        <span class="font-bold text-indigo-500">•</span>
+                                        <span class="line-clamp-2">{{ preg_replace('/^[•\-\*]\s*/u', '', trim($line)) }}</span>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        @endif
+                    </div>
+
+                    <div class="mt-5 flex items-center justify-between border-t border-slate-100 pt-4">
+                        <span class="text-[11px] text-slate-500">
+                            {{ count($lines) }} poin tanggung jawab
+                        </span>
+                        <a href="{{ route('experiences') }}" class="inline-flex items-center gap-1 text-xs font-bold text-indigo-600 transition hover:text-indigo-800">
+                            Detail &rarr;
+                        </a>
+                    </div>
+                </div>
+            @empty
+                <div class="col-span-full rounded-2xl border border-dashed border-slate-200 bg-white p-8 text-center text-slate-500">
+                    Tambahkan pengalaman kerja dari CMS.
+                </div>
+            @endforelse
         </div>
 
     </section>
