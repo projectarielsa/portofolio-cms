@@ -820,7 +820,7 @@
 
         <footer class="mt-20 border-t border-slate-200 bg-white">
             <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-                <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+                <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
 
                     {{-- BRAND / ABOUT --}}
                     <div class="space-y-4">
@@ -845,45 +845,6 @@
                                 {{ ($about->open_to_work ?? true) ? 'Open to Opportunities' : 'Closed to Work' }}
                             </span>
                         </div>
-                    </div>
-
-                    {{-- QUICK LINKS --}}
-                    <div>
-                        <p class="mb-4 text-xs font-bold uppercase tracking-widest text-slate-600">
-                            Navigasi
-                        </p>
-                        <ul class="space-y-2.5 text-xs">
-                            <li>
-                                <a href="{{ route('home') }}" class="text-slate-600 transition hover:text-indigo-600">
-                                    Home
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('about') }}" class="text-slate-600 transition hover:text-indigo-600">
-                                    About Me
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('projects') }}" class="text-slate-600 transition hover:text-indigo-600">
-                                    Selected Projects
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('experiences') }}" class="text-slate-600 transition hover:text-indigo-600">
-                                    Career Experiences
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('services') }}" class="text-slate-600 transition hover:text-indigo-600">
-                                    Focus Areas & Services
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('contact') }}" class="text-slate-600 transition hover:text-indigo-600">
-                                    Contact
-                                </a>
-                            </li>
-                        </ul>
                     </div>
 
                     {{-- FOCUS AREAS --}}
@@ -973,29 +934,11 @@
 
                 </div>
 
-                {{-- COPYRIGHT & BOTTOM BAR --}}
-                <div class="mt-12 flex flex-col items-center justify-between gap-4 border-t border-slate-100 pt-6 sm:flex-row">
+                {{-- COPYRIGHT --}}
+                <div class="mt-12 border-t border-slate-100 pt-6 text-center">
                     <p class="text-xs text-slate-600">
                         &copy; {{ date('Y') }} {{ $about->name ?? config('app.name') }}. All rights reserved.
                     </p>
-
-                    <div class="flex items-center gap-5 text-xs text-slate-600">
-                        <a href="{{ route('login') }}" class="inline-flex items-center gap-1.5 text-slate-600 transition hover:text-indigo-600" title="CMS Portal">
-                            <svg class="h-3.5 w-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
-                            </svg>
-                            <span>CMS Login</span>
-                        </a>
-
-                        <button type="button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
-                                class="group inline-flex items-center gap-1 text-slate-600 transition hover:text-indigo-600"
-                                aria-label="Kembali ke atas">
-                            <span>Ke Atas</span>
-                            <svg class="h-3.5 w-3.5 transition group-hover:-translate-y-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
-                            </svg>
-                        </button>
-                    </div>
                 </div>
             </div>
         </footer>
