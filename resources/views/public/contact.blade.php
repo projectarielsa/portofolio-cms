@@ -287,7 +287,7 @@
                         <div>
                             <p class="text-[10px] font-bold uppercase tracking-wider text-slate-600">Tipe & Area Penempatan</p>
                             <p class="text-xs font-semibold text-slate-800">
-                                On-Site (Jabodetabek / Cikarang / Karawang) · Hybrid · Remote
+                                {{ $about->work_preference ?? 'On-Site (Jabodetabek / Cikarang / Karawang) · Hybrid · Remote' }}
                             </p>
                         </div>
                     </div>

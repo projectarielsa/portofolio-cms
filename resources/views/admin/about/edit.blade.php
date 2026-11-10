@@ -61,11 +61,19 @@
                     </div>
                 @endif
             </div>
-            <div>
-                <label class="block text-sm font-semibold text-slate-700 mb-1.5">Lokasi</label>
-                <input type="text" name="location" value="{{ old('location', $about->location) }}"
-                       class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-800 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100"
-                       placeholder="Indonesia">
+            <div class="grid gap-5 sm:grid-cols-2">
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-1.5">Lokasi Domisili</label>
+                    <input type="text" name="location" value="{{ old('location', $about->location) }}"
+                           class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-800 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100"
+                           placeholder="Cikarang Selatan, Kab. Bekasi">
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-1.5">Area Penempatan / Preferensi Kerja</label>
+                    <input type="text" name="work_preference" value="{{ old('work_preference', $about->work_preference) }}"
+                           class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-800 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100"
+                           placeholder="On-Site (Jabodetabek / Cikarang / Karawang) · Hybrid · Remote">
+                </div>
             </div>
         </div>
     </div>
