@@ -8,8 +8,8 @@ Route::middleware('guest')->group(function () {
     // Register route dinonaktifkan - hanya 1 admin, tidak butuh registrasi publik
     // Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
     // Route::post('/register', [RegisteredUserController::class, 'store']);
-    Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
-    Route::post('/login', [AuthenticatedSessionController::class, 'store'])
+    Route::get('/portal-cms', [AuthenticatedSessionController::class, 'create'])->name('login');
+    Route::post('/portal-cms', [AuthenticatedSessionController::class, 'store'])
         ->middleware('throttle:5,1');
 });
 

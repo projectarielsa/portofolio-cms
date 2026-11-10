@@ -6,6 +6,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Login CMS | {{ $about->name ?? config('app.name', 'Portofolio') }}</title>
+    <meta name="robots" content="noindex, nofollow">
 
     <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}">
 
