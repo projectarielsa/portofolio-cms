@@ -808,253 +808,196 @@
         {{-- ============================================
             FOOTER
         ============================================ --}}
-        <footer
-            class="mt-20 border-t border-slate-200 bg-white"
-        >
+        @php
+            $footerWa = preg_replace('/[^0-9]/', '', $about->whatsapp ?? '');
+            if (str_starts_with($footerWa, '0')) {
+                $footerWa = '62' . substr($footerWa, 1);
+            }
+            $footerLinkedin = $about->linkedin ? (str_starts_with($about->linkedin, 'http') ? $about->linkedin : 'https://linkedin.com/in/' . ltrim($about->linkedin, '@')) : null;
+            $footerGithub = $about->github ? (str_starts_with($about->github, 'http') ? $about->github : 'https://github.com/' . ltrim($about->github, '@')) : null;
+            $footerInstagram = $about->instagram ? (str_starts_with($about->instagram, 'http') ? $about->instagram : 'https://instagram.com/' . ltrim($about->instagram, '@')) : null;
+        @endphp
 
-            <div
-                class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8"
-            >
+        <footer class="mt-20 border-t border-slate-200 bg-white">
+            <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+                <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
 
-                <div
-                    class="grid gap-10 sm:grid-cols-[1.5fr_1fr_1fr]"
-                >
-
-
-                    {{-- ========================================
-                        BRAND
-                    ========================================= --}}
-                    <div>
-
-                        <div
-                            class="mb-5 flex items-center gap-2.5"
-                        >
-
-                            <div
-                                class="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-indigo-500 to-violet-600 shadow-md shadow-indigo-200"
-                            >
-
-                                <span
-                                    class="text-xs font-bold text-white"
-                                >
-
-                                    {{ strtoupper(substr($about->name ?? 'P', 0, 1)) }}
-
+                    {{-- BRAND / ABOUT --}}
+                    <div class="space-y-4">
+                        <a href="{{ route('home') }}" class="group inline-flex items-center gap-2.5">
+                            <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 text-white shadow-md shadow-indigo-200 transition group-hover:scale-105">
+                                <span class="font-display text-sm font-bold">
+                                    {{ strtoupper(substr($about->name ?? 'A', 0, 1)) }}
                                 </span>
-
                             </div>
-
-
-                            <span
-                                class="text-sm font-semibold text-slate-800"
-                            >
-
-                                {{ $about->name ?? 'Portfolio' }}
-
+                            <span class="font-display text-base font-bold text-slate-900 transition group-hover:text-indigo-600">
+                                {{ $about->name ?? 'Muhamad Ariel Saputra' }}
                             </span>
+                        </a>
 
-                        </div>
-
-
-                        <p
-                            class="max-w-xs text-sm leading-7 text-slate-600"
-                        >
-
-                            IT Support & Laravel Developer dengan pengalaman
-                            di bidang sistem, jaringan, dan pengembangan
-                            aplikasi web.
-
+                        <p class="text-xs leading-6 text-slate-600">
+                            IT Support & Web Developer yang berfokus pada infrastruktur sistem, pemeliharaan jaringan Linux/Windows, dan pembuatan aplikasi web modern dengan Laravel.
                         </p>
 
-
-                        <div
-                            class="mt-5 flex items-center gap-2"
-                        >
-
-                            <span
-                                class="h-2 w-2 animate-pulse rounded-full bg-emerald-400"
-                            ></span>
-
-
-                            <span
-                                class="text-xs font-semibold text-emerald-700"
-                            >
-
-                                {{
-                                    ($about->open_to_work ?? true)
-                                        ? 'Open to Opportunities'
-                                        : 'Currently Unavailable'
-                                }}
-
+                        <div class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-3 py-1">
+                            <span class="h-2 w-2 rounded-full {{ ($about->open_to_work ?? true) ? 'bg-emerald-400 animate-pulse' : 'bg-slate-400' }}"></span>
+                            <span class="text-[11px] font-semibold {{ ($about->open_to_work ?? true) ? 'text-emerald-700' : 'text-slate-600' }}">
+                                {{ ($about->open_to_work ?? true) ? 'Open to Opportunities' : 'Closed to Work' }}
                             </span>
-
                         </div>
-
                     </div>
 
-
-                    {{-- ========================================
-                        FOCUS AREAS
-                    ========================================= --}}
+                    {{-- QUICK LINKS --}}
                     <div>
-
-                        <p
-                            class="mb-4 text-xs font-bold uppercase tracking-widest text-slate-600"
-                        >
-
-                            Focus Areas
-
+                        <p class="mb-4 text-xs font-bold uppercase tracking-widest text-slate-600">
+                            Navigasi
                         </p>
-
-
-                        <ul
-                            class="space-y-3 text-sm text-slate-600"
-                        >
-
-                            @forelse ($footerServices->take(5) as $service)
-
-                                <li
-                                    class="flex items-center gap-2"
-                                >
-
-                                    <span
-                                        class="h-1.5 w-1.5 shrink-0 rounded-full bg-indigo-400"
-                                    ></span>
-
-
-                                    <span>
-
-                                        {{ $service->title }}
-
-                                    </span>
-
-                                </li>
-
-                            @empty
-
-                                {{-- FALLBACK --}}
-                                <li>IT Support</li>
-
-                                <li>Web Development</li>
-
-                                <li>Laravel & PHP</li>
-
-                                <li>Linux & Networking</li>
-
-                            @endforelse
-
-                        </ul>
-
-                    </div>
-
-
-                    {{-- ========================================
-                        CONTACT
-                    ========================================= --}}
-                    <div>
-
-                        <p
-                            class="mb-4 text-xs font-bold uppercase tracking-widest text-slate-600"
-                        >
-
-                            Contact
-
-                        </p>
-
-
-                        <ul
-                            class="space-y-3 text-sm text-slate-600"
-                        >
-
-                            {{-- EMAIL --}}
+                        <ul class="space-y-2.5 text-xs">
                             <li>
-
-                                {{ $about->email ?? 'email@example.com' }}
-
-                            </li>
-
-
-                            {{-- LOCATION --}}
-                            <li>
-
-                                {{ $about->location ?? 'Indonesia' }}
-
-                            </li>
-
-
-                            {{-- CONTACT LINK --}}
-                            <li class="pt-1">
-
-                                <a
-                                    href="{{ route('contact') }}"
-                                    class="inline-flex items-center gap-1.5 font-semibold text-indigo-600 transition-colors hover:text-indigo-800"
-                                >
-
-                                    Hubungi Saya
-
-
-                                    <svg
-                                        class="h-3.5 w-3.5"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke="currentColor"
-                                        stroke-width="2.5"
-                                    >
-
-                                        <path
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-                                        />
-
-                                    </svg>
-
+                                <a href="{{ route('home') }}" class="text-slate-600 transition hover:text-indigo-600">
+                                    Home
                                 </a>
-
                             </li>
-
+                            <li>
+                                <a href="{{ route('about') }}" class="text-slate-600 transition hover:text-indigo-600">
+                                    About Me
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('projects') }}" class="text-slate-600 transition hover:text-indigo-600">
+                                    Selected Projects
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('experiences') }}" class="text-slate-600 transition hover:text-indigo-600">
+                                    Career Experiences
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('services') }}" class="text-slate-600 transition hover:text-indigo-600">
+                                    Focus Areas & Services
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('contact') }}" class="text-slate-600 transition hover:text-indigo-600">
+                                    Contact
+                                </a>
+                            </li>
                         </ul>
+                    </div>
 
+                    {{-- FOCUS AREAS --}}
+                    <div>
+                        <p class="mb-4 text-xs font-bold uppercase tracking-widest text-slate-600">
+                            Focus Areas
+                        </p>
+                        <ul class="space-y-2.5 text-xs text-slate-600">
+                            @forelse ($footerServices->take(5) as $service)
+                                <li class="flex items-center gap-2">
+                                    <span class="h-1.5 w-1.5 shrink-0 rounded-full bg-indigo-500"></span>
+                                    <span>{{ $service->title }}</span>
+                                </li>
+                            @empty
+                                <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-indigo-500"></span> IT Support & Hardware</li>
+                                <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-indigo-500"></span> Web Development Laravel</li>
+                                <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-indigo-500"></span> Linux & Server Deployment</li>
+                                <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-indigo-500"></span> Network LAN / WAN</li>
+                            @endforelse
+                        </ul>
+                    </div>
+
+                    {{-- CONTACT & SOCIAL MEDIA --}}
+                    <div>
+                        <p class="mb-4 text-xs font-bold uppercase tracking-widest text-slate-600">
+                            Hubungi Saya
+                        </p>
+                        <div class="space-y-2 text-xs text-slate-600">
+                            <p class="truncate">
+                                <a href="mailto:{{ $about->email ?? 'muhamadarielsaputra11@gmail.com' }}" class="text-slate-600 transition hover:text-indigo-600">
+                                    {{ $about->email ?? 'muhamadarielsaputra11@gmail.com' }}
+                                </a>
+                            </p>
+                            <p class="text-slate-600">
+                                {{ $about->location ?? 'Cikarang Selatan, Kab. Bekasi' }}
+                            </p>
+                        </div>
+
+                        {{-- SOCIAL ICONS --}}
+                        <div class="mt-5">
+                            <p class="mb-2.5 text-[11px] font-semibold text-slate-600">
+                                Media Sosial:
+                            </p>
+                            <div class="flex items-center gap-2">
+                                @if ($footerWa)
+                                    <a href="https://wa.me/{{ $footerWa }}" target="_blank" rel="noopener noreferrer"
+                                       class="flex h-8 w-8 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-600 transition hover:border-emerald-300 hover:bg-emerald-50 hover:text-emerald-600"
+                                       title="WhatsApp" aria-label="WhatsApp">
+                                        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+                                        </svg>
+                                    </a>
+                                @endif
+
+                                @if ($footerLinkedin)
+                                    <a href="{{ $footerLinkedin }}" target="_blank" rel="noopener noreferrer"
+                                       class="flex h-8 w-8 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-600 transition hover:border-sky-300 hover:bg-sky-50 hover:text-sky-600"
+                                       title="LinkedIn" aria-label="LinkedIn">
+                                        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 8.25v9M6.75 5.25v.008M10.5 17.25v-5.25a3 3 0 016 0v5.25M10.5 10.5v6.75" />
+                                        </svg>
+                                    </a>
+                                @endif
+
+                                @if ($footerGithub)
+                                    <a href="{{ $footerGithub }}" target="_blank" rel="noopener noreferrer"
+                                       class="flex h-8 w-8 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-600 transition hover:border-slate-400 hover:bg-slate-100 hover:text-slate-900"
+                                       title="GitHub" aria-label="GitHub">
+                                        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 2.25a9.75 9.75 0 00-3.084 19.001c.488.09.666-.212.666-.47v-1.67c-2.71.589-3.282-1.15-3.282-1.15-.443-1.126-1.082-1.426-1.082-1.426-.884-.604.067-.592.067-.592.977.069 1.491 1.003 1.491 1.003.869 1.488 2.28 1.058 2.835.809.088-.629.34-1.058.618-1.302-2.164-.246-4.44-1.082-4.44-4.815 0-1.064.38-1.934 1.003-2.616-.101-.246-.435-1.239.095-2.583 0 0 .818-.262 2.678 1a9.327 9.327 0 014.876 0c1.86-1.262 2.678-1 2.678-1 .53 1.344.196 2.337.095 2.583.623.682 1.003 1.552 1.003 2.616 0 3.742-2.28 4.566-4.449 4.807.35.301.662.894.662 1.802v2.672c0 .26.176.564.671.468A9.75 9.75 0 0012 2.25z" />
+                                        </svg>
+                                    </a>
+                                @endif
+
+                                @if ($footerInstagram)
+                                    <a href="{{ $footerInstagram }}" target="_blank" rel="noopener noreferrer"
+                                       class="flex h-8 w-8 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-600 transition hover:border-rose-300 hover:bg-rose-50 hover:text-rose-600"
+                                       title="Instagram" aria-label="Instagram">
+                                        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 2.25h9A5.25 5.25 0 0121.75 7.5v9a5.25 5.25 0 01-5.25 5.25h-9a5.25 5.25 0 01-5.25-5.25v-9A5.25 5.25 0 017.5 2.25zm4.5 5.25a4.5 4.5 0 100 9 4.5 4.5 0 000-9zm5.625-.75h.008v.008h-.008V6.75z" />
+                                        </svg>
+                                    </a>
+                                @endif
+                            </div>
+                        </div>
                     </div>
 
                 </div>
 
-
-                {{-- ========================================
-                    COPYRIGHT
-                ========================================= --}}
-                <div
-                    class="mt-12 flex flex-col items-center justify-between gap-4 border-t border-slate-100 pt-6 sm:flex-row"
-                >
-
+                {{-- COPYRIGHT & BOTTOM BAR --}}
+                <div class="mt-12 flex flex-col items-center justify-between gap-4 border-t border-slate-100 pt-6 sm:flex-row">
                     <p class="text-xs text-slate-600">
-
-                        © {{ date('Y') }}
-                        {{ $about->name ?? config('app.name') }}.
-                        Portfolio.
-
+                        &copy; {{ date('Y') }} {{ $about->name ?? config('app.name') }}. All rights reserved.
                     </p>
 
+                    <div class="flex items-center gap-5 text-xs text-slate-600">
+                        <a href="{{ route('login') }}" class="inline-flex items-center gap-1.5 text-slate-600 transition hover:text-indigo-600" title="CMS Portal">
+                            <svg class="h-3.5 w-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+                            </svg>
+                            <span>CMS Login</span>
+                        </a>
 
-                    <p class="text-xs text-slate-600">
-
-                        IT Support
-                        ·
-                        Laravel Developer
-                        ·
-
-                        {{
-                            ($about->open_to_work ?? true)
-                                ? 'Open to Work'
-                                : 'Closed to Work'
-                        }}
-
-                    </p>
-
+                        <button type="button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
+                                class="group inline-flex items-center gap-1 text-slate-600 transition hover:text-indigo-600"
+                                aria-label="Kembali ke atas">
+                            <span>Ke Atas</span>
+                            <svg class="h-3.5 w-3.5 transition group-hover:-translate-y-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+                            </svg>
+                        </button>
+                    </div>
                 </div>
-
             </div>
-
         </footer>
 
     </div>
