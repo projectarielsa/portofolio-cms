@@ -22,7 +22,6 @@ Route::get('/projects/{project:slug}', [PublicController::class, 'projectShow'])
 Route::get('/services', [PublicController::class, 'services'])->name('services');
 Route::get('/experiences', [PublicController::class, 'experiences'])->name('experiences');
 Route::get('/skills', [PublicController::class, 'skills'])->name('skills');
-Route::get('/testimonials', [PublicController::class, 'testimonials'])->name('testimonials');
 Route::get('/contact', [PublicController::class, 'contact'])->name('contact');
 
 Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {

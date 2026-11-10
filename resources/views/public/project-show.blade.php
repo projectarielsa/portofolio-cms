@@ -45,12 +45,12 @@
             align-items: center;
             gap: 6px;
             font-size: 12px;
-            color: #94a3b8;
+            color: #475569;
             margin-bottom: 48px;
         }
 
         .ps-breadcrumb a {
-            color: #94a3b8;
+            color: #475569;
             text-decoration: none;
         }
 
@@ -85,7 +85,7 @@
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.09em;
-            color: #94a3b8;
+            color: #475569;
             margin: 0 0 18px;
         }
 
@@ -102,7 +102,7 @@
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.08em;
-            color: #94a3b8;
+            color: #475569;
             margin-bottom: 6px;
         }
 
@@ -217,7 +217,7 @@
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.09em;
-            color: #94a3b8;
+            color: #475569;
             margin: 0 0 14px;
         }
 
@@ -587,17 +587,17 @@
                 @if ($project->content)
                     {!! nl2br(e($project->content)) !!}
                 @else
-                    <p style="color:#94a3b8; font-style:italic;">Konten detail belum ditambahkan.</p>
+                    <p style="color:#475569; font-style:italic;">Konten detail belum ditambahkan.</p>
                 @endif
             </article>
             <aside class="ps-why">
                 <p
-                    style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.09em;color:#94a3b8;margin:0 0 14px;">
+                    style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.09em;color:#475569;margin:0 0 14px;">
                     Why it matters</p>
                 <h2 style="font-size:17px;font-weight:800;color:#1e293b;line-height:1.4;margin:0 0 12px;">
                     Project sebagai bukti kemampuan teknis
                 </h2>
-                <p style="font-size:14px;color:#64748b;line-height:1.7;margin:0;">
+                <p style="font-size:14px;color:#475569;line-height:1.7;margin:0;">
                     Halaman detail project membantu menjelaskan konteks, fitur, stack, dan keputusan implementasi sehingga
                     karya Anda lebih mudah dinilai oleh recruiter atau hiring manager.
                 </p>
@@ -612,13 +612,13 @@
             <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:28px;">
                 <div>
                     <p
-                        style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.09em;color:#94a3b8;margin:0 0 8px;">
+                        style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.09em;color:#475569;margin:0 0 8px;">
                         Related Projects</p>
                     <h2 style="font-size:24px;font-weight:800;color:#0f172a;margin:0;">Project lainnya</h2>
                 </div>
                 <a href="{{ route('projects') }}"
-                    style="font-size:13px;font-weight:700;color:#6366f1;text-decoration:none;white-space:nowrap;"
-                    onmouseover="this.style.color='#4338ca'" onmouseout="this.style.color='#6366f1'">
+                    style="font-size:13px;font-weight:700;color:#4338ca;text-decoration:none;white-space:nowrap;"
+                    onmouseover="this.style.color='#312e81'" onmouseout="this.style.color='#4338ca'">
                     Semua projects →
                 </a>
             </div>
@@ -626,7 +626,7 @@
                 @foreach ($relatedProjects as $related)
                     <a href="{{ route('projects.show', $related) }}" class="ps-related-card">
                         <p
-                            style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.09em;color:#94a3b8;margin:0 0 10px;">
+                            style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.09em;color:#475569;margin:0 0 10px;">
                             {{ $related->category ?: 'Project' }}
                         </p>
                         <h3 style="font-size:16px;font-weight:800;color:#1e293b;margin:0 0 10px;line-height:1.35;">

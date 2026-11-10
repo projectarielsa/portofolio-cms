@@ -31,11 +31,6 @@
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>{{ route('testimonials') }}</loc>
-        <changefreq>monthly</changefreq>
-        <priority>0.6</priority>
-    </url>
-    <url>
         <loc>{{ route('contact') }}</loc>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
