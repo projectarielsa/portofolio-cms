@@ -823,20 +823,15 @@
                 <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
 
                     {{-- BRAND / ABOUT --}}
-                    <div class="space-y-4">
-                        <a href="{{ route('home') }}" class="group inline-flex items-center gap-2.5">
-                            <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 text-white shadow-md shadow-indigo-200 transition group-hover:scale-105">
-                                <span class="font-display text-sm font-bold">
-                                    {{ strtoupper(substr($about->name ?? 'A', 0, 1)) }}
-                                </span>
-                            </div>
+                    <div class="space-y-3">
+                        <a href="{{ route('home') }}" class="group inline-block">
                             <span class="font-display text-base font-bold text-slate-900 transition group-hover:text-indigo-600">
                                 {{ $about->name ?? 'Muhamad Ariel Saputra' }}
                             </span>
                         </a>
 
-                        <p class="text-xs leading-6 text-slate-600">
-                            IT Support & Web Developer yang berfokus pada infrastruktur sistem, pemeliharaan jaringan Linux/Windows, dan pembuatan aplikasi web modern dengan Laravel.
+                        <p class="text-xs leading-relaxed text-slate-600 text-justify">
+                            {{ $about->short_bio ?? 'IT Support & Web Developer yang berfokus pada infrastruktur sistem, pemeliharaan jaringan Linux/Windows, dan pembuatan aplikasi web modern dengan Laravel.' }}
                         </p>
 
                         <div class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-3 py-1">
