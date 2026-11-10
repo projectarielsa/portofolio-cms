@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\EducationController;
 use App\Http\Controllers\Admin\AccountController;
 
+Route::get('/sitemap.xml', [PublicController::class, 'sitemap'])->name('sitemap');
 
 Route::get('/', [PublicController::class, 'home'])->name('home');
 Route::get('/about', [PublicController::class, 'about'])->name('about');

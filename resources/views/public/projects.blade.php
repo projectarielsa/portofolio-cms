@@ -6,11 +6,10 @@
     $projectCount = $projects->count();
 @endphp
 
-@section('seo_title', $about->name ?? 'Muhamad Ariel Saputra')
-@section('seo_subtitle', 'Projects — Portfolio')
+@section('seo_full_title', 'Projects | Portofolio | ' . ($about->name ?? 'Muhamad Ariel Saputra'))
 @section('seo_description', 'Kumpulan project ' . ($about->name ?? 'Muhamad Ariel Saputra') . ' — aplikasi web Laravel, sistem informasi, dan project IT yang menunjukkan kemampuan teknis sebagai Web Developer.')
 @section('seo_keywords', ($about->name ?? 'Muhamad Ariel Saputra') . ', project Laravel, portfolio web developer, project IT support')
-@section('og_title', 'Projects Portfolio — ' . ($about->name ?? 'Muhamad Ariel Saputra'))
+@section('og_title', 'Projects | Portofolio | ' . ($about->name ?? 'Muhamad Ariel Saputra'))
 @section('og_description', 'Lihat kumpulan project web development dan IT dari ' . ($about->name ?? 'Muhamad Ariel Saputra') . '.')
 
 @section('content')
@@ -18,7 +17,7 @@
 <section class="mx-auto max-w-7xl px-4 pt-20 pb-16 sm:px-6 lg:px-8">
 
     {{-- Breadcrumb --}}
-    <div class="mb-12 flex items-center gap-2 text-xs text-slate-400">
+    <div class="mb-12 flex items-center gap-2 text-xs text-slate-600">
 
         <a
             href="{{ route('home') }}"
@@ -29,7 +28,7 @@
 
         <span class="text-slate-300">/</span>
 
-        <span class="text-slate-500">
+        <span class="text-slate-600">
             Projects
         </span>
 
@@ -39,7 +38,7 @@
     {{-- Header --}}
     <div class="mb-14 max-w-2xl">
 
-        <p class="mb-4 text-xs font-bold uppercase tracking-widest text-indigo-500">
+        <p class="mb-4 text-xs font-bold uppercase tracking-widest text-indigo-600">
             Portfolio
         </p>
 
@@ -50,7 +49,7 @@
             Projects Saya
         </h1>
 
-        <p class="mt-5 text-lg leading-8 text-slate-500">
+        <p class="mt-5 text-lg leading-8 text-slate-600">
             Setiap project menunjukkan cara saya menyusun fitur, memilih stack,
             dan membangun sistem yang terstruktur.
         </p>
@@ -166,7 +165,7 @@
                 {{-- CATEGORY --}}
                 <div class="mb-3 flex items-center justify-between gap-2">
 
-                    <span class="text-xs font-bold uppercase tracking-wide text-slate-400">
+                    <span class="text-xs font-bold uppercase tracking-wide text-slate-600">
 
                         {{ $project->category ?: 'Project' }}
 
@@ -205,7 +204,7 @@
 
 
                 {{-- DESCRIPTION --}}
-                <p class="mt-3 line-clamp-3 text-sm leading-relaxed text-slate-500">
+                <p class="mt-3 line-clamp-3 text-sm leading-relaxed text-slate-600">
 
                     {{ $project->description }}
 
@@ -219,7 +218,7 @@
 
                         @foreach (array_slice(explode(',', $project->tech_stack), 0, 4) as $tech)
 
-                            <span class="rounded-lg border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-medium text-slate-500">
+                            <span class="rounded-lg border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-medium text-slate-600">
 
                                 {{ trim($tech) }}
 
@@ -272,7 +271,7 @@
                                 href="{{ $project->demo_url }}"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                class="rounded-lg border border-slate-200 px-2.5 py-1.5 text-xs font-semibold text-slate-400 transition-all hover:border-indigo-200 hover:bg-indigo-50 hover:text-indigo-600"
+                                class="rounded-lg border border-slate-200 px-2.5 py-1.5 text-xs font-semibold text-slate-600 transition-all hover:border-indigo-200 hover:bg-indigo-50 hover:text-indigo-600"
                             >
 
                                 Demo
@@ -288,7 +287,7 @@
                                 href="{{ $project->repo_url }}"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                class="rounded-lg border border-slate-200 px-2.5 py-1.5 text-xs font-semibold text-slate-400 transition-all hover:border-indigo-200 hover:bg-indigo-50 hover:text-indigo-600"
+                                class="rounded-lg border border-slate-200 px-2.5 py-1.5 text-xs font-semibold text-slate-600 transition-all hover:border-indigo-200 hover:bg-indigo-50 hover:text-indigo-600"
                             >
 
                                 Repo
@@ -354,11 +353,11 @@
 
             </svg>
 
-            <p class="text-sm font-bold text-slate-500">
+            <p class="text-sm font-bold text-slate-600">
                 Belum ada project yang dipublikasikan
             </p>
 
-            <p class="mt-1 text-xs text-slate-400">
+            <p class="mt-1 text-xs text-slate-600">
                 Tambahkan dari admin panel.
             </p>
 

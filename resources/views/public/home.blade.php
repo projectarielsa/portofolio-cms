@@ -4,11 +4,10 @@
     use Illuminate\Support\Str;
 @endphp
 
-@section('seo_title', $about->name ?? 'Muhamad Ariel Saputra')
-@section('seo_subtitle', 'IT Support & Laravel Developer')
+@section('seo_full_title', 'Portofolio | ' . ($about->name ?? 'Muhamad Ariel Saputra'))
 @section('seo_description', ($about->name ?? 'Muhamad Ariel Saputra') . ' — IT Support & Laravel Developer berpengalaman di bidang pengelolaan sistem, jaringan LAN/WAN, server Linux, dan pengembangan aplikasi web berbasis Laravel. Aktif mencari kerja, open to work.')
 @section('seo_keywords', ($about->name ?? 'Muhamad Ariel Saputra') . ', Ariel Saputra, IT Support, Laravel Developer, Web Developer PHP, portfolio IT support Indonesia, developer Laravel Indonesia')
-@section('og_title', ($about->name ?? 'Muhamad Ariel Saputra') . ' | IT Support & Laravel Developer')
+@section('og_title', 'Portofolio | ' . ($about->name ?? 'Muhamad Ariel Saputra'))
 @section('og_description', 'Portfolio ' . ($about->name ?? 'Muhamad Ariel Saputra') . ' — IT Support & Laravel Developer. Berpengalaman sistem, jaringan, dan web development. Open to Work.')
 
 @section('content')
@@ -36,7 +35,7 @@
                 {{ $about->headline ?? 'IT Support & Laravel Developer' }}
             </h1>
 
-            <p class="mt-6 text-base leading-8 text-slate-500 max-w-lg sm:text-lg text-justify">
+            <p class="mt-6 text-base leading-8 text-slate-600 max-w-lg sm:text-lg text-justify">
                 {{ $about->short_bio ?? 'Berpengalaman dalam IT Support, pengelolaan server Linux, konfigurasi jaringan, dan pengembangan aplikasi web berbasis Laravel.' }}
             </p>
 
@@ -79,7 +78,7 @@
                         {{ $featuredProjects->count() }}+
                     </p>
 
-                    <p class="mt-1 text-xs text-slate-400 uppercase tracking-widest">
+                    <p class="mt-1 text-xs text-slate-600 uppercase tracking-widest">
                         Projects
                     </p>
                 </div>
@@ -91,7 +90,7 @@
                         {{ $services->count() }}
                     </p>
 
-                    <p class="mt-1 text-xs text-slate-400 uppercase tracking-widest">
+                    <p class="mt-1 text-xs text-slate-600 uppercase tracking-widest">
                         Focus Areas
                     </p>
                 </div>
@@ -103,7 +102,7 @@
                         {{ $skills->count() }}
                     </p>
 
-                    <p class="mt-1 text-xs text-slate-400 uppercase tracking-widest">
+                    <p class="mt-1 text-xs text-slate-600 uppercase tracking-widest">
                         Skills
                     </p>
                 </div>
@@ -141,7 +140,7 @@
                                         {{ $about->name ?? 'Muhamad Ariel Saputra' }}
                                     </p>
 
-                                    <p class="text-xs text-slate-400">
+                                    <p class="text-xs text-slate-600">
                                         IT Support · Laravel Dev
                                     </p>
 
@@ -153,7 +152,7 @@
 
                                 <span class="h-1.5 w-1.5 rounded-full {{ ($about->open_to_work ?? true) ? 'bg-emerald-400 animate-pulse' : 'bg-slate-400' }}"></span>
 
-                                <span class="text-[11px] font-semibold {{ ($about->open_to_work ?? true) ? 'text-emerald-700' : 'text-slate-500' }}">
+                                <span class="text-[11px] font-semibold {{ ($about->open_to_work ?? true) ? 'text-emerald-700' : 'text-slate-600' }}">
                                     {{ ($about->open_to_work ?? true) ? 'Open to Work' : 'Closed to Work' }}
                                 </span>
 
@@ -167,7 +166,7 @@
 
                             <div class="flex items-center justify-between">
 
-                                <span class="text-xs text-slate-400 uppercase tracking-widest">
+                                <span class="text-xs text-slate-600 uppercase tracking-widest">
                                     Location
                                 </span>
 
@@ -179,7 +178,7 @@
 
                             <div class="flex items-center justify-between">
 
-                                <span class="text-xs text-slate-400 uppercase tracking-widest">
+                                <span class="text-xs text-slate-600 uppercase tracking-widest">
                                     Education
                                 </span>
 
@@ -191,11 +190,11 @@
 
                             <div class="flex items-center justify-between">
 
-                                <span class="text-xs text-slate-400 uppercase tracking-widest">
+                                <span class="text-xs text-slate-600 uppercase tracking-widest">
                                     Status
                                 </span>
 
-                                <span class="text-sm font-semibold {{ ($about->open_to_work ?? true) ? 'text-emerald-600' : 'text-slate-500' }}">
+                                <span class="text-sm font-semibold {{ ($about->open_to_work ?? true) ? 'text-emerald-700' : 'text-slate-600' }}">
                                     {{ ($about->open_to_work ?? true) ? 'Open to Work' : 'Closed to Work' }}
                                 </span>
 
@@ -221,7 +220,7 @@
 
                             <div>
 
-                                <p class="text-xs text-slate-400">
+                                <p class="text-xs text-slate-600">
                                     Mencari posisi
                                 </p>
 
@@ -261,7 +260,7 @@
 
         <div>
 
-            <p class="text-xs font-bold uppercase tracking-widest text-indigo-500 mb-3">
+            <p class="text-xs font-bold uppercase tracking-widest text-indigo-600 mb-3">
                 Selected Work
             </p>
 
@@ -269,7 +268,7 @@
                 Projects yang saya kerjakan
             </h2>
 
-            <p class="mt-3 text-slate-500 max-w-xl">
+            <p class="mt-3 text-slate-600 max-w-xl">
                 Kumpulan project yang mencerminkan cara saya membangun dan menyelesaikan masalah teknis.
             </p>
 
@@ -350,7 +349,7 @@
 
                             <div class="flex items-center justify-between gap-3 mb-3">
 
-                                <span class="text-[10px] uppercase tracking-widest text-slate-400 font-semibold">
+                                <span class="text-[10px] uppercase tracking-widest text-slate-600 font-semibold">
                                     {{ $project->category ?: 'Project' }}
                                 </span>
 
@@ -368,11 +367,11 @@
                                 {{ $project->title }}
                             </h3>
 
-                            <p class="mt-3 text-sm leading-6 text-slate-500 flex-1">
+                            <p class="mt-3 text-sm leading-6 text-slate-600 flex-1">
                                 {{ Str::limit($project->description, 110) }}
                             </p>
 
-                            <div class="mt-5 flex items-center gap-2 text-sm font-semibold text-indigo-500 group-hover:text-indigo-700 transition-colors">
+                            <div class="mt-5 flex items-center gap-2 text-sm font-semibold text-indigo-600 group-hover:text-indigo-700 transition-colors">
 
                                 Lihat Detail
 
@@ -437,7 +436,7 @@
 
                             <div class="flex items-center justify-between gap-3 mb-3">
 
-                                <span class="text-[10px] uppercase tracking-widest text-slate-400 font-semibold">
+                                <span class="text-[10px] uppercase tracking-widest text-slate-600 font-semibold">
                                     {{ $project->category ?: 'Project' }}
                                 </span>
 
@@ -455,11 +454,11 @@
                                 {{ $project->title }}
                             </h3>
 
-                            <p class="mt-3 text-sm leading-6 text-slate-500 flex-1">
+                            <p class="mt-3 text-sm leading-6 text-slate-600 flex-1">
                                 {{ Str::limit($project->description, 110) }}
                             </p>
 
-                            <div class="mt-5 flex items-center gap-2 text-sm font-semibold text-indigo-500 group-hover:text-indigo-700 transition-colors">
+                            <div class="mt-5 flex items-center gap-2 text-sm font-semibold text-indigo-600 group-hover:text-indigo-700 transition-colors">
 
                                 Lihat Detail
 
@@ -551,7 +550,7 @@
 
                         <div class="flex items-center justify-between gap-3 mb-3">
 
-                            <span class="text-[10px] uppercase tracking-widest text-slate-400 font-semibold">
+                            <span class="text-[10px] uppercase tracking-widest text-slate-600 font-semibold">
                                 {{ $project->category ?: 'Project' }}
                             </span>
 
@@ -571,12 +570,12 @@
                         </h3>
 
 
-                        <p class="mt-3 text-sm leading-6 text-slate-500 flex-1">
+                        <p class="mt-3 text-sm leading-6 text-slate-600 flex-1">
                             {{ Str::limit($project->description, 110) }}
                         </p>
 
 
-                        <div class="mt-5 flex items-center gap-2 text-sm font-semibold text-indigo-500 group-hover:text-indigo-700 transition-colors">
+                        <div class="mt-5 flex items-center gap-2 text-sm font-semibold text-indigo-600 group-hover:text-indigo-700 transition-colors">
 
                             Lihat Detail
 
@@ -602,7 +601,7 @@
 
                 <div class="col-span-full rounded-2xl border border-dashed border-slate-200 px-8 py-16 text-center bg-white">
 
-                    <p class="text-slate-400">
+                    <p class="text-slate-600">
                         Belum ada featured project.
                     </p>
 
@@ -628,7 +627,7 @@
 
             <div class="lg:sticky lg:top-28">
 
-                <p class="text-xs font-bold uppercase tracking-widest text-violet-500 mb-3">
+                <p class="text-xs font-bold uppercase tracking-widest text-violet-700 mb-3">
                     What I Do
                 </p>
 
@@ -636,7 +635,7 @@
                     Area yang saya kuasai
                 </h2>
 
-                <p class="mt-4 leading-8 text-slate-500 max-w-md text-justify">
+                <p class="mt-4 leading-8 text-slate-600 max-w-md text-justify">
                     Saya bekerja di persimpangan antara IT Support dan Web Development — dari troubleshooting sistem hingga membangun aplikasi Laravel untuk operasional kerja.
                 </p>
 
@@ -674,17 +673,17 @@
                         [
                             'bg' => 'bg-violet-50',
                             'border' => 'border-violet-100',
-                            'text' => 'text-violet-600'
+                            'text' => 'text-violet-700'
                         ],
                         [
                             'bg' => 'bg-sky-50',
                             'border' => 'border-sky-100',
-                            'text' => 'text-sky-600'
+                            'text' => 'text-sky-700'
                         ],
                         [
                             'bg' => 'bg-emerald-50',
                             'border' => 'border-emerald-100',
-                            'text' => 'text-emerald-600'
+                            'text' => 'text-emerald-700'
                         ],
                     ];
                 @endphp
@@ -710,7 +709,7 @@
                             {{ $service->title }}
                         </h3>
 
-                        <p class="text-sm leading-7 text-slate-500 text-justify">
+                        <p class="text-sm leading-7 text-slate-600 text-justify">
                             {{ $service->description }}
                         </p>
 
@@ -718,7 +717,7 @@
 
                 @empty
 
-                    <div class="col-span-2 rounded-2xl border border-dashed border-slate-200 p-8 text-center text-slate-400 bg-white">
+                    <div class="col-span-2 rounded-2xl border border-dashed border-slate-200 p-8 text-center text-slate-600 bg-white">
                         Tambahkan focus area dari CMS.
                     </div>
 
@@ -742,7 +741,7 @@
 
         <div>
 
-            <p class="text-xs font-bold uppercase tracking-widest text-emerald-500 mb-3">
+            <p class="text-xs font-bold uppercase tracking-widest text-emerald-700 mb-3">
                 Tech Stack
             </p>
 
@@ -765,7 +764,7 @@
 
                 @empty
 
-                    <span class="text-slate-400">
+                    <span class="text-slate-600">
                         Tambahkan skills dari CMS.
                     </span>
 

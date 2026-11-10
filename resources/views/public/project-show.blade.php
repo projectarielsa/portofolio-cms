@@ -2,14 +2,13 @@
 
 @php use Illuminate\Support\Str; @endphp
 
-@section('seo_title', $project->title)
-@section('seo_subtitle', ($project->category ?: 'Project') . ' — ' . ($about->name ?? 'Muhamad Ariel Saputra'))
+@section('seo_full_title', $project->title . ' | Portofolio | ' . ($about->name ?? 'Muhamad Ariel Saputra'))
 @section('seo_description', Str::limit($project->description ?? 'Project oleh ' . ($about->name ?? 'Muhamad Ariel
     Saputra') . ' — IT Support & Laravel Developer.', 155))
 @section('seo_keywords', $project->title . ', ' . ($project->tech_stack ?? 'Laravel, PHP') . ', portfolio project ' .
     ($about->name ?? 'Muhamad Ariel Saputra'))
 @section('og_type', 'article')
-@section('og_title', $project->title . ' | Portfolio ' . ($about->name ?? 'Muhamad Ariel Saputra'))
+@section('og_title', $project->title . ' | Portofolio | ' . ($about->name ?? 'Muhamad Ariel Saputra'))
 @section('og_description', Str::limit($project->description ?? '', 155))
 @section('og_image', $project->cover_image ? asset($project->cover_image) : ($about->photo ? asset($about->photo) : ''))
 
@@ -582,6 +581,9 @@
         {{-- Content --}}
         <div class="ps-content-grid">
             <article class="ps-article">
+                <h2 style="font-size:17px;font-weight:800;color:#1e293b;line-height:1.4;margin:0 0 12px;">
+                    Deskripsi Project
+                </h2>
                 @if ($project->content)
                     {!! nl2br(e($project->content)) !!}
                 @else

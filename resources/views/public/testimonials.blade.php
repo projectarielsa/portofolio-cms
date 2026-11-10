@@ -1,23 +1,22 @@
 @extends('public.layout')
 
-@section('seo_title', $about->name ?? 'Muhamad Ariel Saputra')
-@section('seo_subtitle', 'Testimonials — Portfolio')
+@section('seo_full_title', 'Testimonials | Portofolio | ' . ($about->name ?? 'Muhamad Ariel Saputra'))
 @section('seo_description', 'Testimoni dan feedback tentang cara kerja ' . ($about->name ?? 'Muhamad Ariel Saputra') . ' — IT Support & Laravel Developer yang profesional.')
 @section('seo_keywords', ($about->name ?? 'Muhamad Ariel Saputra') . ', testimoni IT support, review web developer, feedback Laravel developer')
 
 @section('content')
 <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-20 pb-24">
 
-    <div class="flex items-center gap-2 text-xs text-slate-400 mb-12">
+    <div class="flex items-center gap-2 text-xs text-slate-600 mb-12">
         <a href="{{ route('home') }}" class="hover:text-indigo-600 transition-colors">Home</a>
         <span>/</span>
-        <span class="text-slate-500">Testimonials</span>
+        <span class="text-slate-600">Testimonials</span>
     </div>
 
     <div class="max-w-3xl mb-14">
-        <p class="text-xs font-bold uppercase tracking-widest text-amber-500 mb-4">Testimonials</p>
+        <p class="text-xs font-bold uppercase tracking-widest text-amber-700 mb-4">Testimonials</p>
         <h1 class="font-display text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">Feedback dari orang yang pernah bekerja sama</h1>
-        <p class="mt-5 text-lg leading-8 text-slate-500">Testimoni membantu memberi konteks tambahan tentang cara saya bekerja, berkomunikasi, dan menyelesaikan project secara profesional.</p>
+        <p class="mt-5 text-lg leading-8 text-slate-600">Testimoni membantu memberi konteks tambahan tentang cara saya bekerja, berkomunikasi, dan menyelesaikan project secara profesional.</p>
     </div>
 
     <div class="grid gap-5 lg:grid-cols-3">
@@ -29,11 +28,11 @@
                 <p class="text-base leading-7 text-slate-600">"{{ $testimonial->message }}"</p>
                 <div class="mt-6 border-t border-slate-100 pt-5">
                     <p class="font-bold text-slate-800">{{ $testimonial->name }}</p>
-                    <p class="mt-1 text-sm text-slate-400">{{ trim(($testimonial->role ? $testimonial->role.' · ' : '').($testimonial->company ?? '')) }}</p>
+                    <p class="mt-1 text-sm text-slate-600">{{ trim(($testimonial->role ? $testimonial->role.' · ' : '').($testimonial->company ?? '')) }}</p>
                 </div>
             </div>
         @empty
-            <div class="col-span-full rounded-2xl border border-dashed border-slate-200 bg-white px-8 py-14 text-center text-slate-400">
+            <div class="col-span-full rounded-2xl border border-dashed border-slate-200 bg-white px-8 py-14 text-center text-slate-600">
                 Belum ada testimoni yang dipublikasikan.
             </div>
         @endforelse

@@ -100,4 +100,13 @@ class PublicController extends Controller
     {
         return view('public.contact');
     }
+
+    public function sitemap()
+    {
+        return response()
+            ->view('public.sitemap', [
+                'projects' => Project::query()->where('status', 'published')->get(),
+            ])
+            ->header('Content-Type', 'text/xml');
+    }
 }

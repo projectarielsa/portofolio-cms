@@ -19,8 +19,7 @@
     }
 @endphp
 
-@section('seo_title', $about->name ?? 'Muhamad Ariel Saputra')
-@section('seo_subtitle', 'About — IT Support & Laravel Developer')
+@section('seo_full_title', 'About | Portofolio | ' . ($about->name ?? 'Muhamad Ariel Saputra'))
 @section('seo_description',
     'Tentang ' .
     ($about->name ?? 'Muhamad Ariel Saputra') .
@@ -30,7 +29,7 @@
     ($about->name ?? 'Muhamad Ariel Saputra') .
     ', profil IT support, tentang Ariel Saputra, Teknik
     Informatika')
-@section('og_title', 'About ' . ($about->name ?? 'Muhamad Ariel Saputra') . ' | IT Support & Developer')
+@section('og_title', 'About | Portofolio | ' . ($about->name ?? 'Muhamad Ariel Saputra'))
 @section('og_description',
     $about->short_bio ??
     'IT Support & Laravel Developer berpengalaman. Lulusan S1 Teknik
@@ -42,14 +41,14 @@
     <section class="mx-auto max-w-7xl px-4 pt-20 pb-12 sm:px-6 lg:px-8">
 
         {{-- BREADCRUMB --}}
-        <div class="mb-12 flex items-center gap-2 text-xs text-slate-400">
+        <div class="mb-12 flex items-center gap-2 text-xs text-slate-600">
             <a href="{{ route('home') }}" class="transition-colors hover:text-indigo-600">
                 Home
             </a>
 
             <span>/</span>
 
-            <span class="text-slate-500">
+            <span class="text-slate-600">
                 About
             </span>
         </div>
@@ -60,7 +59,7 @@
             {{-- LEFT --}}
             <div>
 
-                <p class="mb-4 text-xs font-bold uppercase tracking-widest text-indigo-500">
+                <p class="mb-4 text-xs font-bold uppercase tracking-widest text-indigo-700">
                     About Me
                 </p>
 
@@ -81,7 +80,7 @@
 
 
                             {{-- IMAGE --}}
-                            <img src="{{ $photoUrl }}" alt="{{ $about->name ?? 'Profile Photo' }}"
+                            <img src="{{ asset('uploads/about/profile-thumb.webp') }}" alt="{{ $about->name ?? 'Profile Photo' }}"
                                 class="relative h-24 w-24 rounded-2xl border-2 border-white object-cover shadow-xl transition duration-300 group-hover:scale-105 sm:h-28 sm:w-28">
 
 
@@ -110,7 +109,7 @@
                             {{ $about->name ?? 'Muhamad Ariel Saputra' }}
                         </h1>
 
-                        <p class="mt-2 text-slate-500">
+                        <p class="mt-2 text-slate-600">
                             {{ $about->headline ?? 'IT Support & Laravel Developer' }}
                         </p>
 
@@ -120,7 +119,7 @@
 
 
                 {{-- BIO --}}
-                <div class="max-w-2xl space-y-4 text-justify leading-8 text-slate-500">
+                <div class="max-w-2xl space-y-4 text-justify leading-8 text-slate-600">
 
                     @php
                         $bio = $about->full_bio ?? ($about->short_bio ?? null);
@@ -166,7 +165,7 @@
                     {{-- EMAIL --}}
                     <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
 
-                        <p class="mb-2 text-[10px] font-semibold uppercase tracking-widest text-slate-400">
+                        <p class="mb-2 text-[10px] font-semibold uppercase tracking-widest text-slate-600">
                             Email
                         </p>
 
@@ -180,7 +179,7 @@
                     {{-- LOCATION --}}
                     <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
 
-                        <p class="mb-2 text-[10px] font-semibold uppercase tracking-widest text-slate-400">
+                        <p class="mb-2 text-[10px] font-semibold uppercase tracking-widest text-slate-600">
                             Location
                         </p>
 
@@ -209,7 +208,7 @@
                             {{ $experiences->count() }}
                         </p>
 
-                        <p class="mt-1 text-xs font-semibold uppercase tracking-widest text-indigo-400">
+                        <p class="mt-1 text-xs font-semibold uppercase tracking-widest text-indigo-700">
                             Pengalaman
                         </p>
 
@@ -223,7 +222,7 @@
                             {{ $skills->count() }}
                         </p>
 
-                        <p class="mt-1 text-xs font-semibold uppercase tracking-widest text-violet-400">
+                        <p class="mt-1 text-xs font-semibold uppercase tracking-widest text-violet-700">
                             Skills
                         </p>
 
@@ -235,7 +234,7 @@
                 {{-- CORE STRENGTH --}}
                 <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
 
-                    <p class="mb-4 text-xs font-bold uppercase tracking-widest text-slate-400">
+                    <p class="mb-4 text-xs font-bold uppercase tracking-widest text-slate-600">
                         Core Strengths
                     </p>
 
@@ -262,7 +261,7 @@
                 {{-- TECHNOLOGIES --}}
                 <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
 
-                    <p class="mb-4 text-xs font-bold uppercase tracking-widest text-slate-400">
+                    <p class="mb-4 text-xs font-bold uppercase tracking-widest text-slate-600">
                         Technologies
                     </p>
 
@@ -277,7 +276,7 @@
 
                         @empty
 
-                            <span class="text-sm text-slate-400">
+                            <span class="text-sm text-slate-600">
                                 Tambahkan skills dari CMS.
                             </span>
                         @endforelse
@@ -296,7 +295,7 @@
     {{-- EXPERIENCE --}}
     <section class="mx-auto max-w-7xl border-t border-slate-100 px-4 py-16 sm:px-6 lg:px-8">
 
-        <p class="mb-3 text-xs font-bold uppercase tracking-widest text-violet-500">
+        <p class="mb-3 text-xs font-bold uppercase tracking-widest text-violet-700">
             Career
         </p>
 
@@ -357,7 +356,7 @@
 
                                 {{-- DATE --}}
                                 <span
-                                    class="shrink-0 rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-medium text-slate-500">
+                                    class="shrink-0 rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-medium text-slate-600">
 
                                     {{ $startDate ?? '—' }}
                                     —
@@ -377,7 +376,7 @@
                                 @endphp
 
 
-                                <div class="mt-4 text-sm leading-7 text-slate-500">
+                                <div class="mt-4 text-sm leading-7 text-slate-600">
 
                                     <ul class="list-disc space-y-1 pl-5">
 
@@ -400,7 +399,7 @@
 
                 @empty
 
-                    <div class="rounded-2xl border border-dashed border-slate-200 bg-white p-8 text-center text-slate-400">
+                    <div class="rounded-2xl border border-dashed border-slate-200 bg-white p-8 text-center text-slate-600">
                         Tambahkan pengalaman kerja dari CMS.
                     </div>
 
@@ -422,7 +421,7 @@
             {{-- EDUCATION --}}
             <div>
 
-                <p class="mb-3 text-xs font-bold uppercase tracking-widest text-emerald-500">
+                <p class="mb-3 text-xs font-bold uppercase tracking-widest text-emerald-700">
                     Education
                 </p>
 
@@ -445,7 +444,7 @@
                                 <div
                                     class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-violet-100 bg-violet-50">
 
-                                    <span class="text-xs font-bold text-violet-600">
+                                    <span class="text-xs font-bold text-violet-700">
 
                                         @if (Str::contains(strtolower($education->degree ?? ''), 'sarjana'))
                                             UNI
@@ -468,7 +467,7 @@
                                     </h3>
 
 
-                                    <p class="mt-1 text-sm text-slate-500">
+                                    <p class="mt-1 text-sm text-slate-600">
 
                                         @if ($education->degree)
                                             {{ $education->degree }}
@@ -508,7 +507,7 @@
 
                                     {{-- DESCRIPTION --}}
                                     @if ($education->description)
-                                        <p class="mt-3 whitespace-pre-line text-sm leading-6 text-slate-500">
+                                        <p class="mt-3 whitespace-pre-line text-sm leading-6 text-slate-600">
                                             {{ $education->description }}
                                         </p>
                                     @endif
@@ -522,7 +521,7 @@
                     @empty
 
                         <div
-                            class="rounded-2xl border border-dashed border-slate-200 bg-white p-8 text-center text-slate-400">
+                            class="rounded-2xl border border-dashed border-slate-200 bg-white p-8 text-center text-slate-600">
                             Tambahkan riwayat pendidikan dari CMS.
                         </div>
 
@@ -536,7 +535,7 @@
             {{-- CV --}}
             <div>
 
-                <p class="mb-3 text-xs font-bold uppercase tracking-widest text-amber-500">
+                <p class="mb-3 text-xs font-bold uppercase tracking-widest text-amber-700">
                     Resume
                 </p>
 
@@ -588,7 +587,7 @@
 
 
                                         @if ($resume->category)
-                                            <p class="mt-1 text-xs font-medium text-indigo-500">
+                                            <p class="mt-1 text-xs font-medium text-indigo-700">
                                                 {{ $resume->category }}
                                             </p>
                                         @endif
@@ -604,7 +603,7 @@
 
                                     {{-- PREVIEW --}}
                                     <a href="{{ asset($resume->file_path) }}" target="_blank" title="Preview CV"
-                                        class="hidden h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-500 transition hover:border-indigo-200 hover:text-indigo-600 sm:inline-flex">
+                                        class="hidden h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-600 transition hover:border-indigo-200 hover:text-indigo-600 sm:inline-flex">
 
                                         <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                                             stroke-width="2">
@@ -658,7 +657,7 @@
                             </svg>
 
 
-                            <p class="text-sm text-slate-400">
+                            <p class="text-sm text-slate-600">
                                 CV belum tersedia.
                             </p>
 

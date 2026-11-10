@@ -1,10 +1,9 @@
 @extends('public.layout')
 
-@section('seo_title', $about->name ?? 'Muhamad Ariel Saputra')
-@section('seo_subtitle', 'Kontak — IT Support & Laravel Developer')
+@section('seo_full_title', 'Kontak | Portofolio | ' . ($about->name ?? 'Muhamad Ariel Saputra'))
 @section('seo_description', 'Hubungi ' . ($about->name ?? 'Muhamad Ariel Saputra') . ' — IT Support & Laravel Developer yang sedang aktif mencari kerja. Tersedia untuk posisi full-time di bidang IT Support maupun Web Developer.')
 @section('seo_keywords', ($about->name ?? 'Muhamad Ariel Saputra') . ', kontak IT support, hire Laravel developer, rekrut web developer Indonesia')
-@section('og_title', 'Hubungi ' . ($about->name ?? 'Muhamad Ariel Saputra') . ' | Open to Work')
+@section('og_title', 'Kontak | Portofolio | ' . ($about->name ?? 'Muhamad Ariel Saputra'))
 @section('og_description', ($about->name ?? 'Muhamad Ariel Saputra') . ' sedang aktif mencari posisi IT Support atau Web Developer. Hubungi sekarang.')
 
 @section('content')
@@ -187,7 +186,7 @@
 <section class="mx-auto max-w-6xl px-4 pt-20 pb-24 sm:px-6 lg:px-8">
 
     {{-- Breadcrumb --}}
-    <div class="mb-12 flex items-center gap-2 text-xs text-slate-400">
+    <div class="mb-12 flex items-center gap-2 text-xs text-slate-600">
         <a
             href="{{ route('home') }}"
             class="transition-colors hover:text-indigo-600"
@@ -197,7 +196,7 @@
 
         <span>/</span>
 
-        <span class="text-slate-500">
+        <span class="text-slate-600">
             Contact
         </span>
     </div>
@@ -221,7 +220,7 @@
         @endif
 
 
-        <p class="mb-4 text-xs font-bold uppercase tracking-widest text-indigo-500">
+        <p class="mb-4 text-xs font-bold uppercase tracking-widest text-indigo-600">
             Kontak Saya
         </p>
 
@@ -231,7 +230,7 @@
         </h1>
 
 
-        <p class="mt-5 text-lg leading-8 text-slate-500">
+        <p class="mt-5 text-lg leading-8 text-slate-600">
 
             Jika Anda adalah recruiter atau hiring manager yang mencari
             IT Support atau Web Developer, saya terbuka untuk berdiskusi
@@ -254,7 +253,7 @@
 
             <div class="rounded-2xl border border-slate-200 bg-white p-7 shadow-sm">
 
-                <p class="mb-6 text-xs font-bold uppercase tracking-widest text-slate-400">
+                <p class="mb-6 text-xs font-bold uppercase tracking-widest text-slate-600">
                     Informasi Kontak
                 </p>
 
@@ -313,12 +312,12 @@
                         ],
 
                         'WhatsApp' => [
-                            'bg' => 'bg-emerald-50 text-emerald-600',
+                            'bg' => 'bg-emerald-50 text-emerald-700',
                             'border' => 'border-emerald-100',
                         ],
 
                         'LinkedIn' => [
-                            'bg' => 'bg-sky-50 text-sky-600',
+                            'bg' => 'bg-sky-50 text-sky-700',
                             'border' => 'border-sky-100',
                         ],
 
@@ -328,7 +327,7 @@
                         ],
 
                         'Instagram' => [
-                            'bg' => 'bg-rose-50 text-rose-500',
+                            'bg' => 'bg-rose-50 text-rose-600',
                             'border' => 'border-rose-100',
                         ],
 
@@ -421,7 +420,7 @@
                                 {{-- Content --}}
                                 <div class="min-w-0 flex-1">
 
-                                    <p class="mb-0.5 text-[10px] font-semibold uppercase tracking-widest text-slate-400">
+                                    <p class="mb-0.5 text-[10px] font-semibold uppercase tracking-widest text-slate-600">
 
                                         {{ $item['label'] }}
 
@@ -582,7 +581,7 @@
             {{-- Target Position --}}
             <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
 
-                <p class="mb-5 text-xs font-bold uppercase tracking-widest text-slate-400">
+                <p class="mb-5 text-xs font-bold uppercase tracking-widest text-slate-600">
 
                     Posisi yang saya cari
 
@@ -656,7 +655,7 @@
                                 </p>
 
 
-                                <p class="mt-0.5 text-xs text-slate-400">
+                                <p class="mt-0.5 text-xs text-slate-600">
 
                                     {{ $position['desc'] }}
 

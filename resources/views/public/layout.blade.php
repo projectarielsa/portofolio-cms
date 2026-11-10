@@ -37,11 +37,7 @@
     {{-- ============================================
         SEO: BASIC
     ============================================ --}}
-    <title>
-        @yield('seo_title', $personName)
-        —
-        @yield('seo_subtitle', 'IT Support & Laravel Developer')
-    </title>
+    <title>@yield('seo_full_title', 'Portofolio | ' . $personName)</title>
 
     <meta
         name="description"
@@ -100,8 +96,7 @@
         property="og:title"
         content="@yield(
             'og_title',
-            $personName .
-                ' — IT Support & Laravel Developer'
+            'Portofolio | ' . $personName
         )"
     >
 
@@ -145,7 +140,7 @@
 
     <meta
         property="og:image:alt"
-        content="{{ $personName }} — IT Support & Laravel Developer"
+        content="Portofolio | {{ $personName }}"
     >
 
     <meta
@@ -166,8 +161,7 @@
         name="twitter:title"
         content="@yield(
             'og_title',
-            $personName .
-                ' — IT Support & Laravel Developer'
+            'Portofolio | ' . $personName
         )"
     >
 
@@ -188,7 +182,7 @@
 
     <meta
         name="twitter:image:alt"
-        content="{{ $personName }} — IT Support & Laravel Developer"
+        content="Portofolio | {{ $personName }}"
     >
 
 
@@ -196,6 +190,23 @@
         STRUCTURED DATA
     ============================================ --}}
     @yield('structured_data')
+
+    @if (request()->routeIs('home'))
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": @json('Portofolio | ' . $personName),
+            "alternateName": [
+                @json('Portofolio ' . $personName),
+                "Portofolio Ariel Saputra",
+                "Muhamad Ariel Saputra Portfolio",
+                "Ariel Saputra Portfolio"
+            ],
+            "url": "{{ url('/') }}"
+        }
+        </script>
+    @endif
 
     @if (request()->routeIs('home') || !request()->routeIs('projects.show'))
 
@@ -647,7 +658,7 @@
                                 {{
                                     request()->routeIs($link['route'])
                                         ? 'active bg-indigo-50 text-indigo-600'
-                                        : 'text-slate-500 hover:bg-slate-100 hover:text-slate-800'
+                                        : 'text-slate-600 hover:bg-slate-100 hover:text-slate-800'
                                 }}"
                             >
 
@@ -683,7 +694,7 @@
                         <button
                             id="mobile-menu-button"
                             type="button"
-                            class="flex h-9 w-9 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-500 transition hover:bg-slate-50 lg:hidden"
+                            class="flex h-9 w-9 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-600 transition hover:bg-slate-50 lg:hidden"
                             aria-label="Toggle navigation"
                             aria-expanded="false"
                         >
@@ -846,7 +857,7 @@
 
 
                         <p
-                            class="max-w-xs text-sm leading-7 text-slate-500"
+                            class="max-w-xs text-sm leading-7 text-slate-600"
                         >
 
                             IT Support & Laravel Developer dengan pengalaman
@@ -866,7 +877,7 @@
 
 
                             <span
-                                class="text-xs font-semibold text-emerald-600"
+                                class="text-xs font-semibold text-emerald-700"
                             >
 
                                 {{
@@ -888,7 +899,7 @@
                     <div>
 
                         <p
-                            class="mb-4 text-xs font-bold uppercase tracking-widest text-slate-400"
+                            class="mb-4 text-xs font-bold uppercase tracking-widest text-slate-600"
                         >
 
                             Focus Areas
@@ -897,7 +908,7 @@
 
 
                         <ul
-                            class="space-y-3 text-sm text-slate-500"
+                            class="space-y-3 text-sm text-slate-600"
                         >
 
                             @forelse ($footerServices->take(5) as $service)
@@ -943,7 +954,7 @@
                     <div>
 
                         <p
-                            class="mb-4 text-xs font-bold uppercase tracking-widest text-slate-400"
+                            class="mb-4 text-xs font-bold uppercase tracking-widest text-slate-600"
                         >
 
                             Contact
@@ -952,7 +963,7 @@
 
 
                         <ul
-                            class="space-y-3 text-sm text-slate-500"
+                            class="space-y-3 text-sm text-slate-600"
                         >
 
                             {{-- EMAIL --}}
@@ -1016,7 +1027,7 @@
                     class="mt-12 flex flex-col items-center justify-between gap-4 border-t border-slate-100 pt-6 sm:flex-row"
                 >
 
-                    <p class="text-xs text-slate-400">
+                    <p class="text-xs text-slate-600">
 
                         © {{ date('Y') }}
                         {{ $about->name ?? config('app.name') }}.
@@ -1025,7 +1036,7 @@
                     </p>
 
 
-                    <p class="text-xs text-slate-400">
+                    <p class="text-xs text-slate-600">
 
                         IT Support
                         ·

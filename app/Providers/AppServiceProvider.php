@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\About;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -15,6 +16,10 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        if (config('app.env') === 'production') {
+            URL::forceScheme('https');
+        }
+
         // Share $about ke semua public views (sekali query, dipakai 9x)
         View::composer('public.*', function ($view) {
             $view->with('about', About::query()->first());
