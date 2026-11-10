@@ -2,6 +2,18 @@
 
 @php
     use Illuminate\Support\Str;
+
+    $photoPath = $about->photo ?? null;
+    $photoUrl = null;
+    if ($photoPath) {
+        if (Str::startsWith($photoPath, ['http://', 'https://'])) {
+            $photoUrl = $photoPath;
+        } elseif (Str::startsWith($photoPath, ['storage/', 'images/', 'uploads/'])) {
+            $photoUrl = asset($photoPath);
+        } else {
+            $photoUrl = asset('storage/' . ltrim($photoPath, '/'));
+        }
+    }
 @endphp
 
 @section('seo_full_title', 'Portofolio | ' . ($about->name ?? 'Muhamad Ariel Saputra'))
@@ -31,7 +43,7 @@
                 </div>
             @endif
 
-            <h1 class="font-display text-4xl font-bold leading-[1.15] tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
+            <h1 class="font-display text-3xl font-bold leading-tight tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
                 {{ $about->headline ?? 'IT Support & Laravel Developer' }}
             </h1>
 
@@ -126,13 +138,16 @@
 
                             <div class="flex items-center gap-3">
 
-                                <div class="h-10 w-10 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center shadow-md shadow-indigo-200">
-
-                                    <span class="text-sm font-bold text-white">
-                                        {{ strtoupper(substr($about->name ?? 'A', 0, 1)) }}
-                                    </span>
-
-                                </div>
+                                @if ($photoUrl)
+                                    <img src="{{ $photoUrl }}" alt="{{ $about->name ?? 'Profile' }}"
+                                         class="h-11 w-11 rounded-xl object-cover border border-white shadow-md shadow-indigo-100">
+                                @else
+                                    <div class="h-10 w-10 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center shadow-md shadow-indigo-200">
+                                        <span class="text-sm font-bold text-white">
+                                            {{ strtoupper(substr($about->name ?? 'A', 0, 1)) }}
+                                        </span>
+                                    </div>
+                                @endif
 
                                 <div>
 
@@ -776,6 +791,47 @@
 
     </div>
 
+</section>
+
+{{-- ══════════════════════════════════════════════
+     CLOSING CTA BANNER
+══════════════════════════════════════════════ --}}
+<section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-24">
+    <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-indigo-600 via-indigo-700 to-violet-800 p-8 sm:p-12 shadow-xl shadow-indigo-200 text-white">
+        <div class="pointer-events-none absolute -top-12 -right-12 h-48 w-48 rounded-full bg-white/10 blur-xl"></div>
+        <div class="pointer-events-none absolute -bottom-10 -left-10 h-40 w-40 rounded-full bg-white/10 blur-lg"></div>
+
+        <div class="relative flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+            <div class="max-w-2xl">
+                @if ($about && ($about->open_to_work ?? true))
+                    <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-emerald-300/30 bg-white/10 px-3.5 py-1 text-xs font-semibold text-emerald-200 backdrop-blur-sm">
+                        <span class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                        Tersedia untuk Posisi Baru
+                    </div>
+                @endif
+                <h2 class="font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white">
+                    Tertarik berkolaborasi atau merekrut saya?
+                </h2>
+                <p class="mt-3 text-sm sm:text-base text-indigo-100 leading-relaxed">
+                    Saya siap memberikan kontribusi terbaik di bidang IT Support maupun Web Development Laravel untuk operasional tim Anda.
+                </p>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-3 shrink-0">
+                <a href="{{ route('contact') }}"
+                   class="inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 text-xs sm:text-sm font-bold text-indigo-700 shadow-lg shadow-indigo-950/20 transition hover:-translate-y-0.5 hover:bg-indigo-50 active:scale-[0.98]">
+                    <span>Hubungi Sekarang</span>
+                    <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                    </svg>
+                </a>
+                <a href="{{ route('about') }}"
+                   class="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/10 px-5 py-3.5 text-xs sm:text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white/20 active:scale-[0.98]">
+                    Profil Lengkap
+                </a>
+            </div>
+        </div>
+    </div>
 </section>
 
 @endsection
