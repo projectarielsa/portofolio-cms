@@ -4,12 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\About;
-use App\Models\Education;
+use App\Traits\CompressesImage;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class AboutController extends Controller
 {
+    use CompressesImage;
+
     public function edit()
     {
         return view('admin.about.edit', [
@@ -25,7 +26,7 @@ class AboutController extends Controller
             'headline' => ['nullable', 'string', 'max:255'],
             'short_bio' => ['nullable', 'string'],
             'full_bio' => ['nullable', 'string'],
-            'photo' => ['nullable', 'image', 'max:2048'],
+            'photo' => ['nullable', 'image', 'max:10240'],
             'email' => ['nullable', 'email', 'max:255'],
             'whatsapp' => ['nullable', 'string', 'max:255'],
             'location' => ['nullable', 'string', 'max:255'],
@@ -39,10 +40,16 @@ class AboutController extends Controller
         $data['open_to_work'] = $request->boolean('open_to_work');
 
         if ($request->hasFile('photo')) {
-            $file = $request->file('photo');
-            $filename = time().'_'.Str::slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)).'.'.$file->getClientOriginalExtension();
-            $file->move(public_path('uploads/about'), $filename);
-            $data['photo'] = 'uploads/about/'.$filename;
+            if ($about->photo && file_exists(public_path($about->photo))) {
+                @unlink(public_path($about->photo));
+            }
+
+            $data['photo'] = $this->compressAndSaveImage(
+                $request->file('photo'),
+                'uploads/about',
+                maxDimension: 1200,
+                quality: 80
+            );
         }
 
         $about->update($data);

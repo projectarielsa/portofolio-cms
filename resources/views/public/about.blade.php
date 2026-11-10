@@ -80,7 +80,7 @@
 
 
                             {{-- IMAGE --}}
-                            <img src="{{ asset('uploads/about/profile-thumb.webp') }}" alt="{{ $about->name ?? 'Profile Photo' }}"
+                            <img src="{{ $photoUrl }}" alt="{{ $about->name ?? 'Profile Photo' }}"
                                 class="relative h-24 w-24 rounded-2xl border-2 border-white object-cover shadow-xl transition duration-300 group-hover:scale-105 sm:h-28 sm:w-28">
 
 
